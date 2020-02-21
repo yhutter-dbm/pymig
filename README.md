@@ -34,7 +34,49 @@ An Hand der Bilder sollen schlussendlich Bildergallerien erstellt werden können
 Als Datenspeicherung wird eine JSON Datei verwendet, diese weisst folgende Struktur auf
 ```json
 [
-	"my_awesome_gallery" : {
+	{
+		"title" : "my awesome gallery",
+		"images": [
+			{
+				"title": "My awesome image 1",
+				"tags": ["awesome", "omg"],
+				"liked": true,
+				"filter-type": 1,
+				"path": "c:\\awesome-image.png"
+			},
+
+			{
+				"title": "My awesome image 2",
+				"tags": ["meh"],
+				"liked": false,
+				"filter-type": null,
+				"path": "c:\\awesome-image2.png"
+			}
+		],
+		"tags": ["first-gallery"]
+
+	},
+
+	{
+		"title" : "my awesome gallery 2",
+		"images": [
+			{
+				"title": "My awesome image 1",
+				"tags": ["awesome", "omg"],
+				"liked": true,
+				"filter-type": 1,
+				"path": "c:\\awesome-image.png"
+			},
+
+			{
+				"title": "My awesome image 2",
+				"tags": ["meh"],
+				"liked": false,
+				"filter-type": null,
+				"path": "c:\\awesome-image2.png"
+			}
+		],
+		"tags": ["first-gallery"]
 
 	}
 ]
