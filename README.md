@@ -1,86 +1,93 @@
 # Pymig
 
 ## Ausgangslage / Motivation
-Ich will eine Web Applikation erstellen, mit welcher leicht Bilder hochgeladen, editiert und verwaltet werden können.
-An Hand der Bilder sollen schlussendlich Bildergallerien erstellt werden können.
+Ich möchte eine Webapplikation entwickeln, welche es einem erlaubt, auf einfach Art und Weise Bildergallerien zu erstellen. Meine Motivation dahinter ist es eine Ordnung im "Bilderchaos" von Personen zu schaffen. Auch soll mit Hilfe von Metainformationen wie Tags und Titel die erstellten Gallerien durchsucht werden können. 
 
 ## Funktion / Projektidee
-- Gallerien erstellen (ist der Hauptkernpunkt der Anwendung)
-- Gallerien können ebenfalls mit Metainformationen angereichert werden (Tags etc.)
-- Bilder hochladen und Gallerien zuordnen
-- Bilder mit Metainformationen (Tags, Beschreibung, Ort der Bildaufnahme anreichern)
-- Kommentarfunktion für die Bilder
-- Bilder mit vordefinierten Filtern versehen (Gaussian-Blur, Schwarz-Weiss etc.)
-- Verzeichnisstruktur von Bildern anlegen (Ordner etc.)
-- Bilder "liken"
-- Nach Bildern und Gallerien suchen können (an Hand des Gallerienamens und der hinterlegten Metainformationen)
+- Gallerien erstellen
+- Gallerien editieren
+- Gallerien löschen
+- Gallerien anschauen (Bildervorschau)
+- Gallerie als JSON Datei exportieren
+- Gallerie mit Hilfe von JSON Datei importieren
+- Gallerie liken
+- Nach Gallerien mit Hilfe von Metainformationen wie Titel und Tags suchen
 
 ## Workflow
-- Benutzer muss immer zuerst eine Bildergallerie anlegen, es können keine Bilder ohne eine zuvor definierten Bildergallerie hochgeladen werden
-- Wenn eine Gallerie erstellt wurde, kann der Benutzer beliebige Bilder hinzufügen
-- Beim Hochladen eines Bildes wird das Bild mit Metainformationen angereichert (Name des Bildes, Tags, Ort der Aufnahme, Tags)
-- Der Benutzer hat die Möglichkeit Bilder zu liken, dann erscheinen sie unter den "Favoriten"
-- Über eine globale Suchfunktion kann schnell nach Gallerien und Bildern gesucht werden
+- Zu Beginn erstellt der Benutzer Gallerien. Hierzu gibt er der zu erstellenden Gallerie einen Tilte, Bilder sowie Metainformationen (Tags, Like Status)
+- Der Benutzer kann die erstellten Gallerien in einer Übersicht ansehen.
+- Der Benutzer kann die erstellten Gallerien jederzeit editieren oder löschen
+- Der Benutzer kann eine Gallerie an Hand einer JSON Datei importieren
+- Der Benutzer kann eine Gallerie als JSON Datei exportieren
+- Der Benutzer kann jederzeit die Bilder, welche zu einer spezifischen Gallerie gehören anschauen
+- Nach Gallerien kann mit einer Suchfunktion gesucht werden
 
 ### Dateneingabe
-- Der Benutzer muss den Namen der Gallerie eingeben
-- Zusätzlich zum Namen der Gallerie kann diese um Metainformationen angereichert werden
-- Der Benutzer muss beim Hochladen der Bilder einen Namen etc. eingeben
-- Der "Like" Status muss pro Bild individuell gespeichert werden.
-- Über die Globale Suche kann mit Hilfe der Metainformationen in Bildgallerien und Bildern gesucht werden
-- Bilder können editiert werden, hier kann der Benutzer vordefinierte Filter anwenden (Gaussian-Blur, Schwarz-Weiss etc.)
+Eine Gallerie hat folgende Informationen, welche vom Benutzer angegeben werden müssen:
+- Titel
+- Bilder welche zur Gallerie gehören
+- Tags um eine Gallerie einfach suchen zu können
+- Like-Status (Favoriten)
 
 ### Datenverarbeitung / Speicherung
 Als Datenspeicherung wird eine JSON Datei verwendet, diese weisst folgende Struktur auf
 ```json
 [
 	{
-		"title" : "my awesome gallery",
+		"title" : "my awesome gallery 1",
+		"tags": ["awesome", "omg"],
+		"liked": true,
 		"images": [
-			{
-				"title": "My awesome image 1",
-				"tags": ["awesome", "omg"],
-				"liked": true,
-				"filter-type": 1,
+			{				
+				"path": "c:\\awesome-image.png"
+			},
+			{				
 				"path": "c:\\awesome-image.png"
 			},
 
-			{
-				"title": "My awesome image 2",
-				"tags": ["meh"],
-				"liked": false,
-				"filter-type": null,
-				"path": "c:\\awesome-image2.png"
-			}
 		],
-		"tags": ["first-gallery"]
-
 	},
-
 	{
 		"title" : "my awesome gallery 2",
+		"tags": ["omg"],
+		"liked": false,
 		"images": [
-			{
-				"title": "My awesome image 1",
-				"tags": ["awesome", "omg"],
-				"liked": true,
-				"filter-type": 1,
+			{				
+				"path": "c:\\awesome-image.png"
+			},
+			{				
 				"path": "c:\\awesome-image.png"
 			},
 
-			{
-				"title": "My awesome image 2",
-				"tags": ["meh"],
-				"liked": false,
-				"filter-type": null,
-				"path": "c:\\awesome-image2.png"
-			}
 		],
-		"tags": ["first-gallery"]
-
-	}
+	},
 ]
 ```
 
 ### Datenausgabe
-TODO
+Wie bereits erwähnt kann eine Gallerie als JSON exportiert werden, die Struktur ist identisch mit jener, welche im Kapitel **Datenverarbeitung / Speicherung** erwähnt wurde.
+
+### Mockups
+![Überblick Gallerien](/mockups/1-My-Galleries.png)
+Dies ist die Ansicht welche der Benutzer beim Öffnen der Webapplikation sieht. Hier erhält er einen Überblick über all seine Gallerien
+
+![Gallerie löschen](/mockups/2-Delete-a-Gallery.png)
+Beim Löschen einer Gallery wird ein Dialog eingeblendet, welche den Benutzer zur Bestätigung auffordert.
+
+![Ein Blick in eine Gallery](/mockups/3-Look-at-it.png)
+Der Benutzer kann über jederzeit die Bilder, welche einer bestimmten Gallerie zugeordnet sind anschauen. Hierzu klickt er einfach auf "Look at it". Anschliessend werden die Bilder der Gallerie dargestellt.
+
+![Neue Gallerie erstellen](/mockups/4-Create-new-Gallery.png)
+Auf dieser Ansicht muss der Benutzer alle notwendigen Informationen angeben. Hierzu gehört der Name der Gallery sowie die Tags und der Like Status. Zudem hat der Benutzer die Möglichkeit über ein "Drop-Target" verschiedene Bilder hochzuladen.
+
+![Bestehende Gallerie editieren](/mockups/5-Edit-Gallery.png)
+Natürlich hat der Benutzer auch die Möglichkeit eine Gallerie zu editieren.
+
+![Eine Gallerie als JSON Datei importieren](/mockups/6-Import-a-Gallery-From-File.png)
+Der Benutzer kann eine Gallerie auch mit Hilfe einer JSON Datei importieren. Hierzu muss er nur die entsprechende JSON Datei auf das "Drop-Target" ziehen. Anschliessend wird die JSON Datei geparst und die Informationen entsprechend ausgefüllt.
+
+![Eine Gallerie als JSON Datei exportieren](/mockups/7-Export-a-Gallery-to-File.png)
+Der Benutzer kann auswählen, welche Gallerie als JSON Datei exportiert werden soll. Es kann nur eine Gallerie auf einmal exportiert werden. Vor dem Export hat der Benutzer die Möglichkeit, die JSON Datei in einem Preview Bereich anzuschauen.
+
+![Suchfunktion](/mockups/8-Search.png)
+Mit Hilfe der Suchfunktion ist es sehr einfach möglich eine gewünschte Gallerie zu finden. Es kann mit Hilfe des Gallerie Titels sowie mit den hinterlegten Tags gesucht werden. Die Suchresultate können zudem noch nach "Like-Status" gefiltert werden.
