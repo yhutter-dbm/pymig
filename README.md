@@ -1,9 +1,11 @@
 # Pymig
 
 ## Ausgangslage / Motivation
-Ich möchte eine Webapplikation entwickeln, welche es einem erlaubt, auf einfach Art und Weise Bildergallerien zu erstellen. Meine Motivation dahinter ist es eine Ordnung im "Bilderchaos" von Personen zu schaffen. Auch soll mit Hilfe von Metainformationen wie Tags und Titel die erstellten Gallerien durchsucht werden können. 
+
+Ich möchte eine Webapplikation entwickeln, welche es einem erlaubt, auf einfach Art und Weise Bildergallerien zu erstellen. Meine Motivation dahinter ist es eine Ordnung im "Bilderchaos" von Personen zu schaffen. Auch soll mit Hilfe von Metainformationen wie Tags und Titel die erstellten Gallerien durchsucht werden können.
 
 ## Funktion / Projektidee
+
 - Gallerien erstellen
 - Gallerien editieren
 - Gallerien löschen
@@ -14,6 +16,7 @@ Ich möchte eine Webapplikation entwickeln, welche es einem erlaubt, auf einfach
 - Nach Gallerien mit Hilfe von Metainformationen wie Titel und Tags suchen
 
 ## Workflow
+
 - Zu Beginn erstellt der Benutzer Gallerien. Hierzu gibt er der zu erstellenden Gallerie einen Tilte, Bilder sowie Metainformationen (Tags, Like Status)
 - Der Benutzer kann die erstellten Gallerien in einer Übersicht ansehen.
 - Der Benutzer kann die erstellten Gallerien jederzeit editieren oder löschen
@@ -23,58 +26,62 @@ Ich möchte eine Webapplikation entwickeln, welche es einem erlaubt, auf einfach
 - Nach Gallerien kann mit einer Suchfunktion gesucht werden
 
 ### Dateneingabe
+
 Eine Gallerie hat folgende Informationen, welche vom Benutzer angegeben werden müssen:
+
 - Titel
 - Bilder welche zur Gallerie gehören
 - Tags um eine Gallerie einfach suchen zu können
 - Like-Status (Favoriten)
 
 ### Datenverarbeitung / Speicherung
+
 Als Datenspeicherung wird eine JSON Datei verwendet, diese weisst folgende Struktur auf
+
 ```json
 [
-	{
-		"title" : "my awesome gallery 1",
-		"tags": ["awesome", "omg"],
-		"liked": true,
-		"images": [
-			{				
-				"path": "c:\\awesome-image.png"
-			},
-			{				
-				"path": "c:\\awesome-image.png"
-			},
-
-		],
-	},
-	{
-		"title" : "my awesome gallery 2",
-		"tags": ["omg"],
-		"liked": false,
-		"images": [
-			{				
-				"path": "c:\\awesome-image.png"
-			},
-			{				
-				"path": "c:\\awesome-image.png"
-			},
-
-		],
-	},
+  {
+    "title": "my awesome gallery 1",
+    "tags": ["awesome", "omg"],
+    "liked": true,
+    "images": [
+      {
+        "path": "c:\\awesome-image.png"
+      },
+      {
+        "path": "c:\\awesome-image.png"
+      }
+    ]
+  },
+  {
+    "title": "my awesome gallery 2",
+    "tags": ["omg"],
+    "liked": false,
+    "images": [
+      {
+        "path": "c:\\awesome-image.png"
+      },
+      {
+        "path": "c:\\awesome-image.png"
+      }
+    ]
+  }
 ]
 ```
 
 ### Datenausgabe
+
 Wie bereits erwähnt kann eine Gallerie als JSON exportiert werden, die Struktur ist identisch mit jener, welche im Kapitel **Datenverarbeitung / Speicherung** erwähnt wurde.
 
 ### Mockups
+
 ![Überblick Gallerien](/mockups/1-My-Galleries.png)
 Dies ist die Ansicht welche der Benutzer beim Öffnen der Webapplikation sieht. Hier erhält er einen Überblick über all seine Gallerien
 
 ![Gallerie löschen](/mockups/2-Delete-a-Gallery.png)
 Beim Löschen einer Gallery wird ein Dialog eingeblendet, welche den Benutzer zur Bestätigung auffordert.
 
-![Ein Blick in eine Gallery](/mockups/3-Look-at-it.png)
+![Ein Blick in eine Gallery](/mockups/3-Look-at-It.png)
 Der Benutzer kann über jederzeit die Bilder, welche einer bestimmten Gallerie zugeordnet sind anschauen. Hierzu klickt er einfach auf "Look at it". Anschliessend werden die Bilder der Gallerie dargestellt.
 
 ![Neue Gallerie erstellen](/mockups/4-Create-new-Gallery.png)
