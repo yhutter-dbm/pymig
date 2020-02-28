@@ -90,5 +90,5 @@ Natürlich hat der Benutzer auch die Möglichkeit eine Gallerie zu editieren.
 Mit Hilfe der Suchfunktion ist es sehr einfach möglich eine gewünschte Gallerie zu finden. Es kann mit Hilfe der hinterlegten Tags gesucht werden. Die Suchresultate können zudem noch nach "Like-Status" gefiltert werden.
 
 ### Seitennavigation / Szenarios
-Das untenstehende Ablaufdiagramm soll veranschaulichen, wohin der Benutzer bei bestimmten Interaktionen mit der Webseite gelangt.
 ![Szenarios](/scenarios/scenarios.png)
+Dieses Ablaufdiagramm soll veranschaulichen, wohin der Benutzer bei bestimmten Interaktionen mit der Webseite gelangt.
