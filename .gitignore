@@ -1,2 +1,3 @@
 demos/
 env/
+__pycache__/

@@ -3,24 +3,24 @@
 	<h1>Confirm your new Gallery</h1>
 
 	<label for="gallery-name">Name</label>
-    <input id="gallery-name" type="text" name="gallery-name" placeholder="{{ gallery['name'] }}" readonly>	
+    <input id="gallery-name" type="text" name="gallery-name" placeholder="{{ gallery.name }}" readonly>	
     <br>
 
 	<label for="gallery-tags">Tags</label>
 	<ul class="current-tag-list">
-		{% for tag in gallery['tags']%}
+		{% for tag in gallery.tags%}
 			<li class="hash-tag"># {{tag}}</li>
 		{% endfor %}
 	</ul>
     <br>
 
     <label for="gallery-favourite">Favourite</label>
-    <p>{{ gallery['favourite'] }}</p>
+    <p>{{ gallery.is_favourite }}</p>
     <br>
 
 	<h2>Images</h2>
 	<ul class="image-list">
-		{% for image in gallery['images']%}
+		{% for image in gallery.images%}
 			<li>{{ image }}</li>
 		{% endfor %}
 	</ul>
