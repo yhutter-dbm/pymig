@@ -10,8 +10,6 @@ Ich möchte eine Webapplikation entwickeln, welche es einem erlaubt, auf einfach
 - Gallerien editieren
 - Gallerien löschen
 - Gallerien anschauen (Bildervorschau)
-- Gallerie als JSON Datei exportieren
-- Gallerie mit Hilfe von JSON Datei importieren
 - Gallerie liken
 - Nach Gallerien mit Hilfe von Metainformationen wie Titel und Tags suchen
 
@@ -20,8 +18,6 @@ Ich möchte eine Webapplikation entwickeln, welche es einem erlaubt, auf einfach
 - Zu Beginn erstellt der Benutzer Gallerien. Hierzu gibt er der zu erstellenden Gallerie einen Tilte, Bilder sowie Metainformationen (Tags, Like Status)
 - Der Benutzer kann die erstellten Gallerien in einer Übersicht ansehen.
 - Der Benutzer kann die erstellten Gallerien jederzeit editieren oder löschen
-- Der Benutzer kann eine Gallerie an Hand einer JSON Datei importieren
-- Der Benutzer kann eine Gallerie als JSON Datei exportieren
 - Der Benutzer kann jederzeit die Bilder, welche zu einer spezifischen Gallerie gehören anschauen
 - Nach Gallerien kann mit einer Suchfunktion gesucht werden
 
@@ -71,7 +67,7 @@ Als Datenspeicherung wird eine JSON Datei verwendet, diese weisst folgende Struk
 
 ### Datenausgabe
 
-Wie bereits erwähnt kann eine Gallerie als JSON exportiert werden, die Struktur ist identisch mit jener, welche im Kapitel **Datenverarbeitung / Speicherung** erwähnt wurde.
+Wie bereits erwähnt wird die Datenstruktur als JSON Datei abgespeichert, siehe Kapitel **Datenverarbeitung / Speicherung**.
 
 ### Mockups
 
@@ -84,17 +80,15 @@ Beim Löschen einer Gallery wird ein Dialog eingeblendet, welche den Benutzer zu
 ![Ein Blick in eine Gallery](/mockups/3-Look-at-It.png)
 Der Benutzer kann über jederzeit die Bilder, welche einer bestimmten Gallerie zugeordnet sind anschauen. Hierzu klickt er einfach auf "Look at it". Anschliessend werden die Bilder der Gallerie dargestellt.
 
-![Neue Gallerie erstellen](/mockups/4-Create-new-Gallery.png)
+![Neue Gallerie erstellen](/mockups/4-Create-a-new-Gallery.png)
 Auf dieser Ansicht muss der Benutzer alle notwendigen Informationen angeben. Hierzu gehört der Name der Gallery sowie die Tags und der Like Status. Zudem hat der Benutzer die Möglichkeit über ein "Drop-Target" verschiedene Bilder hochzuladen.
 
 ![Bestehende Gallerie editieren](/mockups/5-Edit-Gallery.png)
 Natürlich hat der Benutzer auch die Möglichkeit eine Gallerie zu editieren.
 
-![Eine Gallerie als JSON Datei importieren](/mockups/6-Import-a-Gallery-From-File.png)
-Der Benutzer kann eine Gallerie auch mit Hilfe einer JSON Datei importieren. Hierzu muss er nur die entsprechende JSON Datei auf das "Drop-Target" ziehen. Anschliessend wird die JSON Datei geparst und die Informationen entsprechend ausgefüllt.
+![Suchfunktion](/mockups/6-Search.png)
+Mit Hilfe der Suchfunktion ist es sehr einfach möglich eine gewünschte Gallerie zu finden. Es kann mit Hilfe der hinterlegten Tags gesucht werden. Die Suchresultate können zudem noch nach "Like-Status" gefiltert werden.
 
-![Eine Gallerie als JSON Datei exportieren](/mockups/7-Export-a-Gallery-to-File.png)
-Der Benutzer kann auswählen, welche Gallerie als JSON Datei exportiert werden soll. Es kann nur eine Gallerie auf einmal exportiert werden. Vor dem Export hat der Benutzer die Möglichkeit, die JSON Datei in einem Preview Bereich anzuschauen.
-
-![Suchfunktion](/mockups/8-Search.png)
-Mit Hilfe der Suchfunktion ist es sehr einfach möglich eine gewünschte Gallerie zu finden. Es kann mit Hilfe des Gallerie Titels sowie mit den hinterlegten Tags gesucht werden. Die Suchresultate können zudem noch nach "Like-Status" gefiltert werden.
+### Seitennavigation / Szenarios
+Das untenstehende Ablaufdiagramm soll veranschaulichen, wohin der Benutzer bei bestimmten Interaktionen mit der Webseite gelangt.
+![Szenarios](/scenarios/scenarios.png)
