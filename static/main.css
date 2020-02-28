@@ -1,0 +1,52 @@
+/* START CSS HELPER CLASSES */
+.round-image {
+	border-radius: 50%;
+}
+/* END CSS HELPER CLASSES */
+
+header {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	align-items: center;
+	padding: 10px;
+	border-bottom: 1px solid black;
+}
+
+
+.side-nav {
+	position: fixed;
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	align-content: center;
+	width: 150px;
+	height: 100%;
+	border-right: 1px solid black;
+}
+
+.side-nav ul {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+}
+
+.side-nav ul li {
+	margin: 0;
+	padding: 0;
+}
+
+.side-nav ul li.active {
+	font-weight: bold;
+}
+
+.side-nav ul a {
+	text-decoration: none;
+	color: inherit;
+	display: block;
+	text-align: center;
+}
+
+.content-container {
+	padding-left: 150px; /* Same as with of side nav */
+}

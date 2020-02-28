@@ -1,0 +1,11 @@
+<div class="side-nav">
+	<ul>
+		{% for side_nav_element in side_nav_elements %}
+			{% if side_nav_element['active'] == True %}
+				<li class="active"><a href="{{ url_for(side_nav_element.link) }}">{{ side_nav_element.title }}</a></li>
+			{% else %}
+				<li><a href="{{ url_for(side_nav_element.link) }}">{{ side_nav_element.title }}</a></li>
+			{% endif %}
+		{% endfor %}
+	</ul>
+</div>
