@@ -5,6 +5,9 @@
 - [x] Create Mockups
 - [x] Create basic structure / Layout for Web Application
 - [ ] Implement  creating a gallery
+  - [x] Create page for entering data
+  - [x] Create confirmation page
+  - [ ] Save data to JSON
 - [ ] Implement editing a gallery
 - [ ] Implement deleting a gallery
 - [ ] Implement gallery overview

@@ -1,9 +1,27 @@
 {% extends 'layout.html' %}
 {% block content %}
-	<form method="POST">
-    	<h1>General Information</h1>
-		
+	<!-- multipart must be set see: https://pythonise.com/series/learning-flask/flask-uploading-files -->
+	<form method="POST" enctype="multipart/form-data">
+		<h1>General Information</h1>
+		<label for="gallery-name">Name</label>
+	    <input id="gallery-name" type="text" name="gallery-name" placeholder="Please enter a gallery name..." required>	
+	    <br>
 
+		<label for="gallery-tags">Tags</label>
+	    <textarea id="gallery-tags" class="u-full-width" name="gallery-tags" rows="4" cols="50" placeholder="#Tag1 #Tag2 #Tag3..."></textarea>
+	    <br>
+
+	    <label for="gallery-favourite">Favourite</label>
+	    <select id="gallery-favourite" name="gallery-favourite">
+	        <option value="Yes">Yes</option>
+	        <option value="No">No</option>
+      	</select>
+	    <br>
+
+		<h1>Images</h1>
+		<label for="gallery-images">Choose your images</label>
+		<input id="gallery-images" type="file" name="gallery-images" multiple accept="image/*">
+		<br>
 		<button type="submit">Create</button>
 	</form>
 {% endblock %}

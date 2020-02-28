@@ -4,6 +4,12 @@
 }
 /* END CSS HELPER CLASSES */
 
+/* START OVERRIDE SKELETON CSS STYLES */
+.container {
+	margin: 0;
+}
+/* END OVERRIDE SKELETON CSS STYLES */
+
 header {
 	display: flex;
 	flex-direction: row;
@@ -48,5 +54,17 @@ header {
 }
 
 .content-container {
-	padding-left: 150px; /* Same as with of side nav */
+	margin-left: 150px; /* Same as with of side nav */
+	padding-left: 15px;
+}
+
+.current-tag-list {
+	list-style-type: none;
+	margin: 0;
+}
+
+.hash-tag {
+	color: #1DA1F2;
+	font-weight: bold;
+	margin-right: 5px;
 }

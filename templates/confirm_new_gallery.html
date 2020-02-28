@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<h1>Confirm your new Gallery</h1>
+
+	<label for="gallery-name">Name</label>
+    <input id="gallery-name" type="text" name="gallery-name" placeholder="{{ gallery['name'] }}" readonly>	
+    <br>
+
+	<label for="gallery-tags">Tags</label>
+	<ul class="current-tag-list">
+		{% for tag in gallery['tags']%}
+			<li class="hash-tag"># {{tag}}</li>
+		{% endfor %}
+	</ul>
+    <br>
+
+    <label for="gallery-favourite">Favourite</label>
+    <p>{{ gallery['favourite'] }}</p>
+    <br>
+
+	<h2>Images</h2>
+	<ul class="image-list">
+		{% for image in gallery['images']%}
+			<li>{{ image }}</li>
+		{% endfor %}
+	</ul>
+	<br>
+	<a href="{{ url_for('gallery_created') }}"><button type="submit">Confirm</button></a>
+	<a href="{{ url_for('create_new_gallery') }}"><button type="button">Cancel</button></a>
+{% endblock %}

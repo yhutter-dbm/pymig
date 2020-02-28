@@ -1,5 +1,9 @@
 from flask import Flask
 from flask import render_template
+from flask import request
+from flask import url_for
+from flask import redirect
+from flask import make_response
 
 app = Flask("Pymig")
 
@@ -13,7 +17,7 @@ side_nav_elements = [
 						'active': False
 						},
 						{
-						'title': 'Create a new Gallery',
+						'title': 'Create',
 						'link': 'create_new_gallery',
 						'active': False
 						},
@@ -24,6 +28,19 @@ side_nav_elements = [
 						}]
 
 current_path = "My Galleries"
+
+def parse_tags_from_text(text):
+	result =  []
+
+	# Remove all unnecessary characters
+	text = text.replace(',', '').replace('.', '').replace('\r\n', '').replace(' ', '')
+
+	# We assume that a tag is beginning with #
+	result = text.split('#')
+
+	# Remove all empty entries from the list, see: https://www.geeksforgeeks.org/python-remove-empty-strings-from-list-of-strings/
+	result = list(filter(None, result))
+	return result
 
 def reset_all_active_states(side_nav_elements):
 	for element in side_nav_elements:
@@ -49,11 +66,30 @@ def my_galleries():
 	result = set_active_side_nav_element(current_path, side_nav_elements)
 	return render_template("my_galleries.html", side_nav_elements=result, current_path=current_path)
 
-@app.route('/create_new_gallery/')
+@app.route('/create_new_gallery/', methods=['GET', 'POST'])
 def create_new_gallery():
-	current_path = "Create a new Gallery"
+
+	# This happens when the user has entered all relevant data for a gallery -> we show a confirmation page with the entered details
+	if request.method == "POST":
+		current_path = "Confirm your new Gallery"
+		result = set_active_side_nav_element(current_path, side_nav_elements)
+		# Extract the relevant information from the request
+		new_gallery = {}
+		new_gallery["name"] = request.form.get("gallery-name", '')
+		new_gallery["tags"] = parse_tags_from_text(request.form.get("gallery-tags", ''))
+		new_gallery["favourite"] = request.form.get("gallery-favourite", False)
+		# See: https://pythonise.com/series/learning-flask/the-flask-request-object -> Multiple files section
+		new_gallery["images"] = request.files.getlist("gallery-images")
+		return render_template("confirm_new_gallery.html", side_nav_elements=result, current_path=current_path, gallery=new_gallery)
+
+	current_path = "Create"
 	result = set_active_side_nav_element(current_path, side_nav_elements)
+
 	return render_template("create_new_gallery.html", side_nav_elements=result, current_path=current_path)
+
+@app.route('/gallery_created/')
+def gallery_created():
+	return "TODO: Write to JSON..."
 
 @app.route('/search/')
 def search():
