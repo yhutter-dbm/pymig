@@ -1,5 +1,15 @@
 # Pymig
 
+## TODO
+- [x] Create project proposal
+- [x] Create Mockups
+- [x] Create basic structure / Layout for Web Application
+- [ ] Implement  creating a gallery
+- [ ] Implement editing a gallery
+- [ ] Implement deleting a gallery
+- [ ] Implement gallery overview
+- [ ] Implement search
+
 ## Ausgangslage / Motivation
 
 Ich möchte eine Webapplikation entwickeln, welche es einem erlaubt, auf einfach Art und Weise Bildergallerien zu erstellen. Meine Motivation dahinter ist es eine Ordnung im "Bilderchaos" von Personen zu schaffen. Auch soll mit Hilfe von Metainformationen wie Tags und Titel die erstellten Gallerien durchsucht werden können.
