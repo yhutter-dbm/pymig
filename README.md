@@ -4,15 +4,19 @@
 - [x] Create project proposal
 - [x] Create Mockups
 - [x] Create basic structure / Layout for Web Application
-- [ ] Implement  creating a gallery
+- [x] Implement  creating a gallery
   - [x] Create page for entering data
   - [x] Create confirmation page
-  - [ ] Save data to JSON
+  - [x] Save data to JSON
+- [ ] Implement gallery overview
+  - [x] Load available galleries from JSON
+  - [ ] Display loaded galleries
+  - [ ] Add buttons (Look at it, edit, delete)
+- [ ] Implement looking at the contents of a gallery (images etc.)
 - [ ] Implement editing a gallery
 - [ ] Implement deleting a gallery
-- [ ] Implement gallery overview
 - [ ] Implement search
-- [ ] Remove all print statements
+- [ ] Set debug to False
 
 ## Ausgangslage / Motivation
 
