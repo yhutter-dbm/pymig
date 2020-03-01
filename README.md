@@ -8,14 +8,16 @@
   - [x] Create page for entering data
   - [x] Create confirmation page
   - [x] Save data to JSON
-- [ ] Implement gallery overview
+- [x] Implement gallery overview
   - [x] Load available galleries from JSON
-  - [ ] Display loaded galleries
-  - [ ] Add buttons (Look at it, edit, delete)
+  - [x] Display loaded galleries
+  - [x] Add buttons (Look at it, edit, delete)
 - [ ] Implement looking at the contents of a gallery (images etc.)
 - [ ] Implement editing a gallery
 - [ ] Implement deleting a gallery
 - [ ] Implement search
+- [ ] Add error handling (creating a gallery with the same name etc.)
+- [ ] Add responsive design and make this look fancy
 - [ ] Set debug to False
 
 ## Ausgangslage / Motivation
