@@ -93,7 +93,7 @@ def create_new_gallery():
 		# Save as json file...
 		GalleryHelper.save_to_json(json_file_path, galleries, app.logger)
 
-		return redirect(url_for("home"))
+		return redirect(url_for("my_galleries"))
 
 	current_path = "Create"
 	result = SideNavHelper.set_active_side_nav_element(current_path, side_nav_elements, app.logger)
