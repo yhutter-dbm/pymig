@@ -12,6 +12,7 @@
 - [ ] Implement deleting a gallery
 - [ ] Implement gallery overview
 - [ ] Implement search
+- [ ] Remove all print statements
 
 ## Ausgangslage / Motivation
 

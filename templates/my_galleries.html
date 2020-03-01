@@ -1,4 +1,8 @@
 {% extends 'layout.html' %}
 {% block content %}
     <p>My Galleries Content</p>
+    {% for gallery in galleries %}
+    	<h2>{{ gallery.name }}<h2>
+    {% endfor %}
+
 {% endblock %}
