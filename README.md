@@ -12,14 +12,14 @@
   - [x] Load available galleries from JSON
   - [x] Display loaded galleries
   - [x] Add buttons (Look at it, edit, delete)
-- [ ] Implement looking at the contents of a gallery (images etc.)
-  - [ ] Add Masonry.js for auto image layouting
-  - [ ] Render all images inside a gallery
-  - [ ] Perhaps add loading spinner if images take too long to load (optional)?
+- [x] Implement looking at the contents of a gallery (images etc.)
+  - [x] Render all images inside a gallery
 - [ ] Implement editing a gallery
 - [ ] Implement deleting a gallery
 - [ ] Implement search
-- [ ] Add error handling (creating a gallery with the same name etc.)
+- [ ] Add error handling -> Show appropriate error page.
+  - [ ] Creating a gallery with the same name
+  - [ ] When clicking on edit and the name of a gallery cannot be found
 - [ ] Add responsive design and make this look fancy
 - [ ] Set debug to False
 

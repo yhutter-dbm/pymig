@@ -82,7 +82,7 @@ body {
 	margin-right: 5px;
 }
 
-.gallery {
+.card {
 	/* Inspiration from: https://codepen.io/sdthornton/pen/wBZdXq */
 	background: #fff;
   	border-radius: 2px;
@@ -110,6 +110,20 @@ body {
 	color: inherit;
 	text-decoration: none;
 	margin: 0 5px;
+}
+
+/* Inspiration from: https://www.freecodecamp.org/news/how-to-create-an-image-gallery-with-css-grid-e0f0fd666a5c/ */
+.gallery {
+    display: grid;
+    grid-template-columns: repeat(8, 1fr);
+    grid-template-rows: repeat(8, 5vw);
+    grid-gap: 15px;
+}
+
+.gallery__img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 

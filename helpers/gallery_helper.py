@@ -46,3 +46,13 @@ class GalleryHelper():
                 logger.info("Loaded the following data: ", result_galleries)
                 return result_galleries
         return []
+
+    @staticmethod
+    def get_gallery_from_json(file_name, gallery_name, logger):
+        # First load the galleries from json
+        galleries = GalleryHelper.load_from_json(file_name, logger)
+        for gallerie in galleries:
+            if gallerie.name == gallery_name:
+                return gallerie
+        # At this point the gallery was not found
+        return None

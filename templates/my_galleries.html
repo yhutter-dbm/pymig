@@ -1,13 +1,13 @@
 {% extends 'layout.html' %}
 {% block content %}
 	{% for gallery in galleries %}
-		<div class="gallery">
+		<div class="card">
 			<h2>{{ gallery.name }}</h2>
 			<!-- See: https://jinja.palletsprojects.com/en/2.11.x/templates/#length -->
 			<p>Number of images: <b>{{ gallery.images | length }}</b></p>
 			<p>Tags: <span class="hash-tag">{{ gallery.get_tags_str() }}</span></p>
 			<ul class="gallery-crud-options">
-				<li><a href="#">Look at it</a></li>
+				<li><a href="{{ url_for('look_at_gallery', gallery_name=gallery.name) }}">Look at it</a></li>
 				<li><a href="#">Edit</a></li>
 				<li><a href="#">Delete</a></li>
 			</ul>

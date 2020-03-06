@@ -50,7 +50,7 @@ current_path = "My Galleries"
 
 
 # Variables for file handling
-base_path = "./galleries/"
+base_path = "./static/galleries/"
 json_file_path = "./galleries.json"
 
 
@@ -89,7 +89,7 @@ def create_new_gallery():
         )
 
         new_gallery.set_file_paths(
-            base_path, request.files.getlist("gallery-images"))
+            './galleries/', request.files.getlist("gallery-images"))
 
         # Save to disk
         GalleryHelper.save_to_disk(
@@ -112,6 +112,18 @@ def create_new_gallery():
                            side_nav_elements=result,
                            current_path=current_path)
 
+
+@app.route('/look_at_gallery/<gallery_name>')
+def look_at_gallery(gallery_name=""):
+    current_path = "My Galleries"
+    result = SideNavHelper.set_active_side_nav_element(
+        current_path, side_nav_elements, app.logger)
+    # Find the gallery with the corresponding name
+    found_gallery = GalleryHelper.get_gallery_from_json(json_file_path, gallery_name, app.logger)
+    return render_template("look_at_gallery.html",
+                           side_nav_elements=result,
+                           current_path=current_path,
+                           gallery=found_gallery)
 
 @app.route('/search/')
 def search():
