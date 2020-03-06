@@ -1,30 +1,25 @@
 <!DOCTYPE html>
 <html>
-<head>
-	<title>Pymig - Image Galleries made simple</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='skeleton/css/normalize.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='skeleton/css/skeleton.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css')}}">
-
-</head>
-<body>
-	<header>
-		<div id="logo">
-			<img class="round-image" src="https://via.placeholder.com/75">
+	<head>
+		<title>Pymig - Image Galleries made simple</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='skeleton/css/normalize.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='skeleton/css/skeleton.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css')}}">
+	</head>
+	<body>
+		<header>
+			<div id="logo">
+				<img class="round-image" src="https://via.placeholder.com/75">
+			</div>
+			<div id="current-path">
+				<h1>PyMig > {{ current_path }}</h1>
+			</div>
+			<!-- Spacer for centering the current path element -->
+			<div></div>
+		</header>
+		{% include 'side-nav.html' %}
+		<div class="content-container">
+			{% block content %} {% endblock %}
 		</div>
-		<div id="current-path">
-			<h1>PyMig > {{ current_path }}</h1>
-		</div>
-
-		<!-- Spacer for centering the current path element -->
-		<div></div>
-	</header>
-
-	{% include 'side-nav.html' %}
-
-	<div class="content-container">
-		{% block content %} {% endblock %}
-	</div>
-
-</body>
+	</body>
 </html>

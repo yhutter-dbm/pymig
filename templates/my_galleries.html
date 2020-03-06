@@ -1,20 +1,20 @@
 {% extends 'layout.html' %}
 {% block content %}
-    {% for gallery in galleries %}
-    	<div class="gallery">
-    		<h2>{{ gallery.name }}</h2>
-    		<!-- See: https://jinja.palletsprojects.com/en/2.11.x/templates/#length -->
-    		<p>Number of images: <b>{{ gallery.images | length }}</b></p>
-    		<p>Tags:
-    			{% for tag in gallery.tags %}
-    				<span class="hash-tag">#{{tag}}</span>
-    			{% endfor %}
-    		</p>
-    		<ul class="gallery-crud-options">
-    			<li><a href="#">Look at it</a></li>
-    			<li><a href="#">Edit</a></li>
-    			<li><a href="#">Delete</a></li>
-    		</ul>
-    	</div>
-    {% endfor %}
+	{% for gallery in galleries %}
+		<div class="gallery">
+			<h2>{{ gallery.name }}</h2>
+			<!-- See: https://jinja.palletsprojects.com/en/2.11.x/templates/#length -->
+			<p>Number of images: <b>{{ gallery.images | length }}</b></p>
+			<p>Tags:
+				{% for tag in gallery.tags %}
+					<span class="hash-tag">#{{tag}}</span>
+				{% endfor %}
+			</p>
+			<ul class="gallery-crud-options">
+				<li><a href="#">Look at it</a></li>
+				<li><a href="#">Edit</a></li>
+				<li><a href="#">Delete</a></li>
+			</ul>
+		</div>
+	{% endfor %}
 {% endblock %}
