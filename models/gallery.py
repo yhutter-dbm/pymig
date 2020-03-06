@@ -1,5 +1,5 @@
 class Gallery():
-    def __init__(self, name, tags, is_favourite, images, logger):
+    def __init__(self, logger, name="", tags=[], is_favourite=False, images=[]):
         self.name = name
         self.tags = tags
         self.is_favourite = is_favourite
@@ -18,4 +18,17 @@ class Gallery():
         result["tags"] = self.tags
         result["is_favourite"] = self.is_favourite
         result["images"] = self.images
+        return result
+
+    def initialize_from_dictionary(self, dict):
+        self.name = dict.get("name", "")
+        self.is_favourite = dict.get("is_favourite", False)
+        self.tags = dict.get("tags", [])
+        self.images = dict.get("images", [])
+
+    def get_tags_str(self):
+        result = ""
+        if len(self.tags) > 0:
+            for tag in self.tags:
+                result = result + "#" + tag + " "
         return result

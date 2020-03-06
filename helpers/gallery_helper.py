@@ -1,5 +1,6 @@
 import os
 import json
+from models.gallery import Gallery
 
 
 class GalleryHelper():
@@ -35,7 +36,13 @@ class GalleryHelper():
         # Check if json file actually exists otherwise return empty array
         if os.path.isfile(file_name):
             with open(file_name, "r", encoding="utf-8") as save_file:
-                result = json.load(save_file)
-                logger.info("Loaded the following data: ", result)
-                return result
+                result_dicts = json.load(save_file)
+                result_galleries = []
+                # Convert dictionary back to gallery object...
+                for dict in result_dicts:
+                    gallery = Gallery(logger)
+                    gallery.initialize_from_dictionary(dict)
+                    result_galleries.append(gallery)
+                logger.info("Loaded the following data: ", result_galleries)
+                return result_galleries
         return []

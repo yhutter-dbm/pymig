@@ -13,6 +13,9 @@
   - [x] Display loaded galleries
   - [x] Add buttons (Look at it, edit, delete)
 - [ ] Implement looking at the contents of a gallery (images etc.)
+  - [ ] Add Masonry.js for auto image layouting
+  - [ ] Render all images inside a gallery
+  - [ ] Perhaps add loading spinner if images take too long to load (optional)?
 - [ ] Implement editing a gallery
 - [ ] Implement deleting a gallery
 - [ ] Implement search

@@ -79,13 +79,13 @@ def create_new_gallery():
             current_path, side_nav_elements, app.logger)
         # Extract the relevant information from the request
         new_gallery = Gallery(
+            logger=app.logger,
             name=request.form.get("gallery-name", ''),
             tags=StringHelper.parse_tags_from_text(
                 request.form.get("gallery-tags", ''), app.logger),
             is_favourite=request.form.get("gallery-favourite", False),
             # See: https://pythonise.com/series/learning-flask/the-flask-request-object -> Multiple files section
-            images=[],
-            logger=app.logger
+            images=[]
         )
 
         new_gallery.set_file_paths(
