@@ -108,3 +108,17 @@ img.round-image {
     display: block;
     max-width: 100%;
   }
+
+	.lightbox {
+    margin-top: 5px;
+    font-weight: bold;
+    color: black !important;
+    border: 2px solid black;
+    transition: all 0.5s linear !important;
+  }
+
+  .lightbox:hover {
+    color: #1e87f0 !important;
+    border: 2px solid #1e87f0;
+
+  }

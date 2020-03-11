@@ -3,8 +3,15 @@
 <div class="grid">
 	<div class="grid-sizer"></div>
 	{% for image in gallery.images %}
-	<div class="grid-item">
+	<!-- Needed a way to have an index, enumerate does not work: https://stackoverflow.com/questions/27035728/flask-cannot-import-enumerate-undefinederror-enumerate-is-undefined  -->
+	<div class="grid-item uk-inline-clip uk-transition-toggle" tabindex="{{ loop.index0 }}">
 		<img src="{{ url_for('static', filename=image) }}">
+		<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-default">
+			<h1>Image {{ loop.index0 + 1}}</h1>
+			<div uk-lightbox>
+				<a class="uk-button uk-button-default lightbox" href="{{ url_for('static', filename=image) }}">Open Fullscreen</a>
+			</div>
+		</div>
 	</div>
 	{% endfor %}
 </div>
