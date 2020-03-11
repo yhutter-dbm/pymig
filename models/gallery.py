@@ -1,10 +1,11 @@
 class Gallery():
-    def __init__(self, logger, name="", tags=[], is_favourite=False, images=[]):
+    def __init__(self, logger, name="", tags=[], is_favourite=False, images=[], description=""):
         self.name = name
         self.tags = tags
         self.is_favourite = is_favourite
         self.images = images
         self.logger = logger
+        self.description = description
 
     def set_file_paths(self, base_path, images):
         gallery_full_path = base_path + self.name + "/"
@@ -18,6 +19,7 @@ class Gallery():
         result["tags"] = self.tags
         result["is_favourite"] = self.is_favourite
         result["images"] = self.images
+        result["description"] = self.description
         return result
 
     def initialize_from_dictionary(self, dict):
@@ -25,6 +27,7 @@ class Gallery():
         self.is_favourite = dict.get("is_favourite", False)
         self.tags = dict.get("tags", [])
         self.images = dict.get("images", [])
+        self.description = dict.get("description", "")
 
     def get_tags_str(self):
         result = ""

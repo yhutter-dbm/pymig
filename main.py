@@ -85,7 +85,8 @@ def create_new_gallery():
                 request.form.get("gallery-tags", ''), app.logger),
             is_favourite=request.form.get("gallery-favourite", False),
             # See: https://pythonise.com/series/learning-flask/the-flask-request-object -> Multiple files section
-            images=[]
+            images=[],
+            description = request.form.get("gallery-description", "")
         )
 
         new_gallery.set_file_paths(
