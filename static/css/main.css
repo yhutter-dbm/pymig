@@ -1,0 +1,110 @@
+/* START CSS HELPER CLASSES */
+img.round-image {
+	border-radius: 50%;
+}
+/* END CSS HELPER CLASSES */
+
+.no-galleries {
+	position: absolute;
+	top: 0;
+	left: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	z-index: -9999;
+}
+
+/* Inspired from: https://stackoverflow.com/questions/34762009/pulsing-heart-css-animation */
+@keyframes heartbeat {
+	0%
+  {
+    transform: scale( .75 );
+  }
+  20%
+  {
+    transform: scale( 1 );
+  }
+  40%
+  {
+    transform: scale( .75 );
+  }
+  60%
+  {
+    transform: scale( 1 );
+  }
+  80%
+  {
+    transform: scale( .75 );
+  }
+  100%
+  {
+    transform: scale( .75 );
+  }
+}
+
+.heart {
+	color: red;
+	animation-timing-function: ease-in-out;
+	animation: heartbeat 2s infinite;
+}
+
+.heart svg path {
+	fill: red;
+}
+
+.uk-card {
+	float: left;
+	max-width: 450px;
+	margin: 10px;
+}
+
+.gallery-crud-options {
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
+	position: absolute;
+	bottom: 15px;
+	right: 15px;
+}
+
+.gallery-crud-options li {
+	float: left;
+	color: inherit;
+	text-decoration: none;
+	margin: 0 5px;
+}
+
+/* Masonry, took inspiration from this: https://codepen.io/desandro/pen/MwJoZQ*/
+
+/* clear fix */
+.grid:after {
+    content: '';
+    display: block;
+    clear: both;
+  }
+
+  /* ---- .grid-item ---- */
+
+  .grid-sizer,
+  .grid-item {
+    width: 33%;
+  }
+
+  @media only screen and (max-width: 600px) {
+    .grid-sizer,
+    .grid-item {
+      width: 100%;
+    }
+}
+
+  .grid-item {
+    float: left;
+  }
+
+  .grid-item img {
+    display: block;
+    max-width: 100%;
+  }

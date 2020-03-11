@@ -1,16 +1,40 @@
 {% extends 'layout.html' %}
 {% block content %}
-	{% for gallery in galleries %}
-		<div class="card">
-			<h2>{{ gallery.name }}</h2>
-			<!-- See: https://jinja.palletsprojects.com/en/2.11.x/templates/#length -->
-			<p>Number of images: <b>{{ gallery.images | length }}</b></p>
-			<p>Tags: <span class="hash-tag">{{ gallery.get_tags_str() }}</span></p>
-			<ul class="gallery-crud-options">
-				<li><a href="{{ url_for('look_at_gallery', gallery_name=gallery.name) }}">Look at it</a></li>
-				<li><a href="#">Edit</a></li>
-				<li><a href="#">Delete</a></li>
-			</ul>
-		</div>
-	{% endfor %}
+{% if galleries | length < 1 %}
+<div class="no-galleries">
+	<h1>Show some <span uk-icon="icon: heart; ratio: 2" class="heart"></span> by creating galleries</h1>
+</div>
+{% endif %}
+{% for gallery in galleries %}
+
+<div class="uk-card uk-card-hover uk-card-large">
+	<div class="uk-card-header">
+		<div class="uk-card-badge"><span class="uk-badge">{{ gallery.images | length }}</span></div>
+		<h3 class="uk-card-title">{{ gallery.name }}</h3>
+	</div>
+	<div class="uk-card-body">
+		<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+	</div>
+	<div class="uk-card-footer">
+		<ul class="gallery-crud-options">
+			<li><a href="{{ url_for('look_at_gallery', gallery_name=gallery.name) }}"><span uk-icon="icon: camera;"></span></a></li>
+			<li><a href="#"><span uk-icon="icon: pencil;"></span></a></li>
+			<li><a href="#"><span uk-icon="icon: trash;"></span></a></li>
+		</ul>
+	</div>
+</div>
+
+<!--
+<div class="card">
+	<h2>{{ gallery.name }}</h2>
+	<p>Number of images: <b>{{ gallery.images | length }}</b></p>
+	<p>Tags: <span class="hash-tag">{{ gallery.get_tags_str() }}</span></p>
+	<ul class="gallery-crud-options">
+		<li><a href="{{ url_for('look_at_gallery', gallery_name=gallery.name) }}">Look at it</a></li>
+		<li><a href="#">Edit</a></li>
+		<li><a href="#">Delete</a></li>
+	</ul>
+</div>
+-->
+{% endfor %}
 {% endblock %}

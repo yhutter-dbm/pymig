@@ -1,8 +1,11 @@
 {% extends 'layout.html' %}
 {% block content %}
-	<div id="gallery">
-		{% for image in gallery.images: %}
-			<img src="{{ url_for('static', filename=image) }}" class="gallery__img">
-		{% endfor %}
+<div class="grid">
+	<div class="grid-sizer"></div>
+	{% for image in gallery.images %}
+	<div class="grid-item">
+		<img src="{{ url_for('static', filename=image) }}">
 	</div>
+	{% endfor %}
+</div>
 {% endblock %}
