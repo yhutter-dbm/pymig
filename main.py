@@ -124,7 +124,8 @@ def look_at_gallery(gallery_name=""):
     return render_template("look_at_gallery.html",
                            side_nav_elements=result,
                            current_path=current_path,
-                           gallery=found_gallery)
+                           gallery=found_gallery,
+                           requires_init_masonry=True)
 
 @app.route('/search/')
 def search():

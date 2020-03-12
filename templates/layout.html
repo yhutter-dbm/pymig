@@ -33,7 +33,11 @@
 
 	<script type="text/javascript" src="{{ url_for('static', filename='uikit/js/uikit.min.js')}}"></script>
 	<script type="text/javascript" src="{{ url_for('static', filename='uikit/js/uikit-icons.min.js')}}"></script>
-	<script type="text/javascript" src="{{ url_for('static', filename='js/init-masonry.js')}}"></script>
+
+	<!-- Only load scripts for masonry when needed -->
+	{% if requires_init_masonry %}
+		<script type="text/javascript" src="{{ url_for('static', filename='js/init-masonry.js')}}"></script>
+	{% endif %}
 </body>
 
 </html>
