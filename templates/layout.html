@@ -38,6 +38,10 @@
 	{% if requires_init_masonry %}
 		<script type="text/javascript" src="{{ url_for('static', filename='js/init-masonry.js')}}"></script>
 	{% endif %}
+
+	{% if requires_show_uploaded_files %}
+		<script type="text/javascript" src="{{ url_for('static', filename='js/show-uploaded-files.js')}}"></script>
+	{% endif %}
 </body>
 
 </html>

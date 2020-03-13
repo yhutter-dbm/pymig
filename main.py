@@ -111,7 +111,8 @@ def create_new_gallery():
 
     return render_template("create_new_gallery.html",
                            side_nav_elements=result,
-                           current_path=current_path)
+                           current_path=current_path,
+                           requires_show_uploaded_files=True)
 
 
 @app.route('/look_at_gallery/<gallery_name>')
