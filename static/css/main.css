@@ -4,6 +4,12 @@ img.round-image {
 }
 /* END CSS HELPER CLASSES */
 
+.navbar-element {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
 .no-galleries {
 	position: absolute;
 	top: 0;
@@ -57,7 +63,7 @@ img.round-image {
 
 .uk-card {
 	float: left;
-	max-width: 450px;
+	min-width: 450px;
 	margin: 10px;
 }
 

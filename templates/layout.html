@@ -16,11 +16,11 @@
 		<div class="uk-navbar-right">
 			<ul class="uk-navbar-nav">
 				{% for side_nav_element in side_nav_elements %}
-				{% if side_nav_element.active == True %}
-				<li class="uk-active"><a href="{{ url_for(side_nav_element.link) }}">{{ side_nav_element.title }}</a></li>
-				{% else %}
-				<li><a href="{{ url_for(side_nav_element.link) }}">{{ side_nav_element.title }}</a></li>
-				{% endif %}
+					{% if side_nav_element.active == True %}
+						<li class="uk-active navbar-element"><span class="uk-margin-small-left" uk-icon="icon: {{ side_nav_element.icon }}"></span><a href="{{ url_for(side_nav_element.link) }}">{{ side_nav_element.title }}</a></li>
+						{% else %}
+							<li class="navbar-element"><span class="uk-margin-small-left" uk-icon="icon: {{ side_nav_element.icon }}"></span><a href="{{ url_for(side_nav_element.link) }}">{{ side_nav_element.title }}</a></li>
+					{% endif %}
 				{% endfor %}
 			</ul>
 		</div>

@@ -28,21 +28,25 @@ if debug:
 galleries = []
 
 # Global variables for UI
+# For more information about icons see: https://getuikit.com/docs/icon
 side_nav_elements = [
     SideNav(
         title='My Galleries',
         link='my_galleries',
-        active=False
+        active=False,
+        icon="album"
     ),
     SideNav(
         title='Create',
         link='create_new_gallery',
-        active=False
+        active=False,
+        icon="pencil"
     ),
     SideNav(
         title='Search',
         link='search',
-        active=False
+        active=False,
+        icon="search"
     )
 ]
 
