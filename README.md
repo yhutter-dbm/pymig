@@ -14,9 +14,9 @@
   - [x] Add buttons (Look at it, edit, delete)
 - [x] Implement looking at the contents of a gallery (images etc.)
   - [x] Render all images inside a gallery
-- [ ] Implement editing a gallery
-  - [ ] Create edit page (probably can reuse create page and populate with data from a model)
-  - [ ] Save edited gallery back into JSON File
+- [x] Implement editing a gallery
+  - [x] Create edit page (probably can reuse create page and populate with data from a model)
+  - [x] Save edited gallery back into JSON File
 - [ ] Implement deleting a gallery
   - [ ] Create modal confirmation dialogue.
   - [ ] Delete Gallery from JSON File
@@ -26,9 +26,11 @@
   - [ ] Creating / Editing a gallery with the same name
   - [ ] Validate uploaded image file names
   - [ ] Validate image gallery name (e.g no empty string, should not exist already etc.)
-- [ ] Add responsive design and make this look fancy
+- [x] Add responsive design and make this look fancy
   - [x] Switch to UIKit Framework
 - [ ] Set debug to False
+- [ ] Remove all print statements
+- [ ] Check all TODO comments
 
 ## Ausgangslage / Motivation
 
