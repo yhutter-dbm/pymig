@@ -1,18 +1,27 @@
 {% extends 'layout.html' %}
 {% block content %}
+
+{% if (gallery.images | length) > 0 %}
 <div class="grid">
 	<div class="grid-sizer"></div>
 	{% for image in gallery.images %}
 	<!-- Needed a way to have an index, enumerate does not work: https://stackoverflow.com/questions/27035728/flask-cannot-import-enumerate-undefinederror-enumerate-is-undefined  -->
 	<div class="grid-item uk-inline-clip uk-transition-toggle" tabindex="{{ loop.index0 }}">
-		<img src="{{ url_for('static', filename=image) }}">
+		<img src="{{ image }}">
 		<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-default">
 			<h1>Image {{ loop.index0 + 1}}</h1>
 			<div uk-lightbox>
-				<a class="uk-button uk-button-default lightbox" href="{{ url_for('static', filename=image) }}">Open Fullscreen</a>
+				<a class="uk-button uk-button-default lightbox" href="{{ image }}">Open Fullscreen</a>
 			</div>
 		</div>
 	</div>
 	{% endfor %}
 </div>
+{% else %}
+<div class="no-images">
+	<h1>Dear God even the death has more fun... how about some images</h1>
+	<i class="em em-ghost" aria-role="presentation" aria-label="GHOST"></i>
+</div>
+{% endif %}
+
 {% endblock %}

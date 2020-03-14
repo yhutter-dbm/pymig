@@ -18,3 +18,12 @@ class StringHelper():
         result = list(filter(None, result))
 
         return result
+
+    @staticmethod
+    def replace_first_occurrence(to_replace, replace_with, elements):
+        # See: https://stackoverflow.com/questions/6005891/replace-first-occurrence-only-of-a-string/28607089
+        result = []
+        for element in elements:
+            element = element.replace(to_replace, replace_with, 1)
+            result.append(element)
+        return result

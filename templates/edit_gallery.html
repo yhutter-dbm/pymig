@@ -1,0 +1,77 @@
+{% extends 'layout.html' %}
+{% block content %}
+<!-- multipart must be set see: https://pythonise.com/series/learning-flask/flask-uploading-files -->
+
+{% if gallery %}
+<form method="POST" enctype="multipart/form-data">
+
+  <fieldset class="uk-fieldset">
+
+    <legend class="uk-legend">General Information</legend>
+
+    <div class="uk-margin">
+      <label class="uk-form-label" for="gallery-name">Gallery Name</label>
+      <input class="uk-input" id="gallery-name" type="text" name="gallery-name" placeholder="Please enter a gallery name..." value="{{ gallery.name }}" required>
+    </div>
+
+    <div class="uk-margin">
+      <p>{{ gallery.description }}</p>
+      <label class="uk-form-label" for="gallery-description">Gallery Description</label>
+      <textarea id="gallery-description" name="gallery-description" class="uk-textarea" rows="5" placeholder="Your description...">{{ gallery.description }}</textarea>
+    </div>
+
+    <div class="uk-margin">
+      <label class="uk-form-label" for="gallery-tags">Tags</label>
+      <textarea id="gallery-tags" name="gallery-tags" class="uk-textarea" rows="5" placeholder="#Tag1 #Tag2 #Tag3...">{{ gallery.get_tags_str() }}</textarea>
+    </div>
+
+    <div class="uk-margin">
+      <label class="uk-form-label" for="gallery-favourite">Is Favourite Galley</label>
+      <select class="uk-select" id="gallery-favourite" name="gallery-favourite">
+        <option value="Yes" {% if gallery.is_favourite %}selected{% endif %}>Yes</option>
+        <option value="No" {% if not gallery.is_favourite %}selected{% endif %}>No</option>
+      </select>
+    </div>
+  </fieldset>
+
+
+  {% if (gallery.images | length) > 0 %}
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">Delete Existing Images</legend>
+    <div class="uk-margin">
+      {% for image in gallery.images %}
+      <label><input class="uk-checkbox uk-margin-small-right" type="checkbox" name="image-to-delete" value="{{ image }}">{{ gallery.get_image_name(image) }}</label><br>
+      {% endfor %}
+    </div>
+  </fieldset>
+  {% endif %}
+
+
+  <fieldset class="uk-fieldset">
+    <legend class="uk-legend">Add New Images</legend>
+    <div class="uk-margin">
+      <label for="uk-form-label" for="gallery-images"></label>
+      <div class="js-upload uk-placeholder uk-text-center">
+        <span uk-icon="icon: cloud-upload"></span>
+        <div uk-form-custom>
+          <input id="gallery-images" type="file" name="gallery-images" multiple accept="image/*">
+          <span class="uk-link">Choose your images...</span>
+        </div>
+      </div>
+
+      <p>You have choosen the following images:</p>
+      <ul class="uk-list uk-list-striped" id="choosen-image-files">
+      </ul>
+    </div>
+  </fieldset>
+
+  <button type="submit" class="uk-button uk-button-primary">Save</button>
+</form>
+{% else %}
+<div class="unknown-gallery-name">
+  <h1>Oops this gallery does not seem to exist...</h1>
+  <i class="em em-ghost" aria-role="presentation" aria-label="GHOST"></i>
+</div>
+{% endif %}
+
+{% endblock %}

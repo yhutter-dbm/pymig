@@ -7,7 +7,6 @@ import logging
 
 from models.gallery import Gallery
 from models.side_nav import SideNav
-from helpers.string_helper import StringHelper
 from helpers.side_nav_helper import SideNavHelper
 from helpers.gallery_helper import GalleryHelper
 app = Flask("Pymig")
@@ -54,8 +53,7 @@ current_path = "My Galleries"
 
 
 # Variables for file handling
-base_path = "./static/galleries/"
-json_file_path = "./galleries.json"
+
 
 
 @app.route('/')
@@ -66,7 +64,7 @@ def my_galleries():
         current_path, side_nav_elements, app.logger)
 
     # Load from json...
-    galleries = GalleryHelper.load_from_json(json_file_path, app.logger)
+    galleries = GalleryHelper.load_from_json(app.logger)
     return render_template("my_galleries.html",
                            side_nav_elements=result,
                            current_path=current_path,
@@ -81,31 +79,15 @@ def create_new_gallery():
         current_path = "Confirm your new Gallery"
         result = SideNavHelper.set_active_side_nav_element(
             current_path, side_nav_elements, app.logger)
-        # Extract the relevant information from the request
-        new_gallery = Gallery(
-            logger=app.logger,
-            name=request.form.get("gallery-name", ''),
-            tags=StringHelper.parse_tags_from_text(
-                request.form.get("gallery-tags", ''), app.logger),
-            is_favourite=request.form.get("gallery-favourite", False),
-            # See: https://pythonise.com/series/learning-flask/the-flask-request-object -> Multiple files section
-            images=[],
-            description = request.form.get("gallery-description", "")
-        )
 
-        new_gallery.set_file_paths(
-            './galleries/', request.files.getlist("gallery-images"))
-
-        # Save to disk
-        GalleryHelper.save_to_disk(
-            base_path, new_gallery,
-            request.files.getlist("gallery-images"), app.logger)
+        # Create from request object
+        new_gallery = GalleryHelper.create_gallery_from_request(request, app.logger)
 
         # Add to existing galleries
         galleries.append(new_gallery)
 
         # Save as json file...
-        GalleryHelper.save_to_json(json_file_path, galleries, app.logger)
+        GalleryHelper.save_to_json(galleries, app.logger)
 
         return redirect(url_for("my_galleries"))
 
@@ -124,13 +106,49 @@ def look_at_gallery(gallery_name=""):
     current_path = "My Galleries"
     result = SideNavHelper.set_active_side_nav_element(
         current_path, side_nav_elements, app.logger)
-    # Find the gallery with the corresponding name
-    found_gallery = GalleryHelper.get_gallery_from_json(json_file_path, gallery_name, app.logger)
+
+    galleries = GalleryHelper.load_from_json(app.logger)
+    found_gallery = GalleryHelper.get_gallery_with_name(galleries, gallery_name, app.logger)
     return render_template("look_at_gallery.html",
                            side_nav_elements=result,
                            current_path=current_path,
                            gallery=found_gallery,
                            requires_init_masonry=True)
+
+@app.route('/edit_gallery/<gallery_name>', methods=['POST', 'GET'])
+def edit_gallery(gallery_name=""):
+    current_path = "My Galleries"
+    result = SideNavHelper.set_active_side_nav_element(
+        current_path, side_nav_elements, app.logger)
+
+    # Load from json...
+    galleries = GalleryHelper.load_from_json(app.logger)
+    # Find the gallery with the corresponding name
+    found_gallery = GalleryHelper.get_gallery_with_name(galleries, gallery_name, app.logger)
+
+    if request.method == "POST":
+        try:
+            updated_gallery = GalleryHelper.update_gallery_from_request(found_gallery, request, app.logger)
+
+            # Remove the unedited one from galleries
+            galleries.remove(found_gallery)
+
+            # Add the newly edited one to galleries
+            galleries.append(updated_gallery)
+
+            # Save as json file...
+            GalleryHelper.save_to_json(galleries, app.logger)
+            return redirect(url_for("my_galleries"))
+        except Exception as error:
+            # TODO Add error HTML Template
+            return str(error)
+
+
+    return render_template("edit_gallery.html",
+                           side_nav_elements=result,
+                           current_path=current_path,
+                           gallery=found_gallery,
+                           requires_show_uploaded_files=True)
 
 @app.route('/search/')
 def search():

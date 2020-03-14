@@ -1,3 +1,5 @@
+import os
+
 class Gallery():
     def __init__(self, logger, name="", tags=[], is_favourite=False, images=[], description=""):
         self.name = name
@@ -10,7 +12,8 @@ class Gallery():
     def set_file_paths(self, base_path, images):
         gallery_full_path = base_path + self.name + "/"
         for image in images:
-            self.images.append(gallery_full_path + image.filename)
+            if image.filename:
+                self.images.append(gallery_full_path + image.filename)
         self.logger.info("The current image paths  are ", self.images)
 
     def to_dictionary_data_structure(self):
@@ -35,3 +38,28 @@ class Gallery():
             for tag in self.tags:
                 result = result + "#" + tag + " "
         return result
+
+    def get_image_name(self, image):
+        return image.split("/")[-1]
+
+    def get_relative_image_path(self, image):
+        os.path.join("./", image)
+
+    def remove_images(self, images):
+        for image in images:
+            self.images.remove(image)
+        return self.images
+
+    def rename(self, new_name):
+        # Rename all images
+        renamed_images = []
+        for image in self.images:
+            new_image = image.replace(self.name, new_name, 1)
+            renamed_images.append(new_image)
+
+        print("Renamed images are now")
+        print(renamed_images)
+        self.images = renamed_images
+        
+        # Rename the gallery itself
+        self.name = new_name

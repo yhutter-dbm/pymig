@@ -18,7 +18,7 @@
 	<div class="uk-card-footer">
 		<ul class="gallery-crud-options">
 			<li><a href="{{ url_for('look_at_gallery', gallery_name=gallery.name) }}"><span uk-icon="icon: camera;"></span></a></li>
-			<li><a href="#"><span uk-icon="icon: pencil;"></span></a></li>
+			<li><a href="{{ url_for('edit_gallery', gallery_name=gallery.name) }}"><span uk-icon="icon: pencil;"></span></a></li>
 			<li><a href="#"><span uk-icon="icon: trash;"></span></a></li>
 		</ul>
 	</div>
