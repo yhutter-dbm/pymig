@@ -9,6 +9,14 @@ base_path = "./static/galleries/"
 absolute_base_path = "/static/galleries/"
 json_file_path = "./static/galleries.json"
 
+# We assume that the following characters are valid
+# a-z / A-Z / 0-9, _, -, ' '
+letters = list("abcdefghijklmnopqrstuvwxyz")
+upper_case_letters = list("abcdefghijklmnopqrstuvwxyz".upper())
+numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+other_valid_characters = list("_- ")
+valid_gallery_name_characters = letters + upper_case_letters + numbers + other_valid_characters
+
 class GalleryHelper():
 
     @staticmethod
@@ -76,11 +84,25 @@ class GalleryHelper():
         return None
 
     @staticmethod
+    def is_valid_gallery_name(gallery_name):
+        gallery_name = gallery_name.strip()
+        for character in gallery_name:
+            if not character in valid_gallery_name_characters:
+                return False
+        return True
+
+
+    @staticmethod
     def create_gallery_from_request(request, logger):
         # Extract the relevant information from the request
+        name = request.form.get("gallery-name", '')
+        # Check if the name is valid
+        if not GalleryHelper.is_valid_gallery_name(name):
+            raise Exception("Invalid gallery name " + name + ". It should only contain numeric, alphanumeric, '_' , '-' or whitespaces")
+
         new_gallery = Gallery(
             logger=logger,
-            name=request.form.get("gallery-name", ''),
+            name=name,
             tags=StringHelper.parse_tags_from_text(
                 request.form.get("gallery-tags", ''), logger),
             is_favourite=request.form.get("gallery-favourite", False),
@@ -106,8 +128,9 @@ class GalleryHelper():
         old_name = gallery.name
         new_name = request.form.get("gallery-name", '')
 
-        if new_name == "":
-            raise Exception("Gallery name cannot be empty")
+        # Check if the name is valid
+        if not GalleryHelper.is_valid_gallery_name(new_name):
+            raise Exception("Invalid gallery name " + name + ". It should only contain numeric, alphanumeric, '_' , '-' or whitespaces")
 
         images_to_delete = request.form.getlist("image-to-delete")
 

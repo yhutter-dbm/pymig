@@ -23,10 +23,10 @@
   - [x] Delete entire folder structure under static/galleries for the deleted gallery
 - [ ] Implement search
 - [ ] Add error handling -> Show appropriate error page.
-  - [ ] Create error template which takes in an error message as well as an optional navigation link
+  - [x] Create error template which takes in an error message as well as an optional navigation link
   - [ ] Creating / Editing a gallery with the same name
   - [ ] Validate uploaded image file names
-  - [ ] Validate image gallery name (e.g no empty string, should not exist already etc.)
+  - [x] Validate image gallery name (e.g no empty string, should not exist already etc.)
 - [x] Add responsive design and make this look fancy
   - [x] Switch to UIKit Framework
 - [ ] Set debug to False

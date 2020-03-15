@@ -22,10 +22,6 @@ if debug:
 
 # The app has a basic template called layout. I used https://hackersandslackers.com/flask-jinja-templates/ for inspiration.
 
-
-# Keep track of all galleries
-galleries = []
-
 # Global variables for UI
 # For more information about icons see: https://getuikit.com/docs/icon
 side_nav_elements = [
@@ -75,27 +71,26 @@ def my_galleries():
 def create_new_gallery():
     # Load from json...
     galleries = GalleryHelper.load_from_json(app.logger)
+    current_path = "Create"
+
+    result = SideNavHelper.set_active_side_nav_element(current_path, side_nav_elements, app.logger)
+
 
     # This happens when the user has entered all relevant data for a gallery
     if request.method == "POST":
-        current_path = "Confirm your new Gallery"
-        result = SideNavHelper.set_active_side_nav_element(
-            current_path, side_nav_elements, app.logger)
+        try:
+            # Create from request object
+            new_gallery = GalleryHelper.create_gallery_from_request(request, app.logger)
 
-        # Create from request object
-        new_gallery = GalleryHelper.create_gallery_from_request(request, app.logger)
+            # Add to existing galleries
+            galleries.append(new_gallery)
 
-        # Add to existing galleries
-        galleries.append(new_gallery)
+            # Save as json file...
+            GalleryHelper.save_to_json(galleries, app.logger)
 
-        # Save as json file...
-        GalleryHelper.save_to_json(galleries, app.logger)
-
-        return redirect(url_for("my_galleries"))
-
-    current_path = "Create"
-    result = SideNavHelper.set_active_side_nav_element(
-        current_path, side_nav_elements, app.logger)
+            return redirect(url_for("my_galleries"))
+        except Exception as error:
+            return redirect(url_for("error", message=str(error), rescue_link=url_for('create_new_gallery')))
 
     return render_template("create_new_gallery.html",
                            side_nav_elements=result,
@@ -142,8 +137,8 @@ def edit_gallery(gallery_name=""):
             GalleryHelper.save_to_json(galleries, app.logger)
             return redirect(url_for("my_galleries"))
         except Exception as error:
-            # TODO Add error HTML Template
-            return str(error)
+            return redirect(url_for("error", message=str(error)))
+
 
 
     return render_template("edit_gallery.html",
@@ -177,8 +172,7 @@ def delete_gallery(gallery_name=""):
             return redirect(url_for("my_galleries"))
 
         except Exception as error:
-            # TODO Add error HTML Template
-            return str(error)
+            return redirect(url_for("error", message=str(error), rescue_link=url_for('delete_gallery', gallery_name=gallery_name)))
 
     return render_template("confirm_delete_gallery.html",
                            side_nav_elements=result,
@@ -195,6 +189,17 @@ def search():
                            side_nav_elements=result,
                            current_path=current_path)
 
+@app.route('/error')
+def error():
+    current_path = ""
+
+    # We extract the information directly from the request as encoding the rescue link in the route itself does not work
+    # See: https://stackoverflow.com/questions/24892035/how-can-i-get-the-named-parameters-from-a-url-using-flask
+    message = request.args.get("message", "")
+    rescue_link = request.args.get("rescue_link", None)
+    result = SideNavHelper.set_active_side_nav_element(current_path, side_nav_elements, app.logger)
+    return render_template("error.html", side_nav_elements=result,
+    current_path=current_path, message=message, rescue_link=rescue_link)
 
 if __name__ == "__main__":
     app.run(debug=debug, port=5000)
