@@ -67,6 +67,17 @@ img.round-image {
 	margin: 10px;
 }
 
+.tags-list {
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
+}
+
+.tag {
+	color: #1DA1F2;
+	font-weight: bold;
+}
+
 .gallery-crud-options {
 	list-style-type: none;
 	margin: 0;

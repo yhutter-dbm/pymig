@@ -14,6 +14,13 @@
 	</div>
 	<div class="uk-card-body">
 		<p>{{ gallery.description }}</p>
+		{% if (gallery.tags | length) > 0 %}
+		<ul class="tags-list">
+			{% for tag in gallery.tags %}
+				<li><span class="tag"># </span>{{ tag }}</li>
+			{% endfor %}
+		</ul>
+		{% endif %}
 	</div>
 	<div class="uk-card-footer">
 		<ul class="gallery-crud-options">
