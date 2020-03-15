@@ -49,17 +49,3 @@ class Gallery():
         for image in images:
             self.images.remove(image)
         return self.images
-
-    def rename(self, new_name):
-        # Rename all images
-        renamed_images = []
-        for image in self.images:
-            new_image = image.replace(self.name, new_name, 1)
-            renamed_images.append(new_image)
-
-        print("Renamed images are now")
-        print(renamed_images)
-        self.images = renamed_images
-        
-        # Rename the gallery itself
-        self.name = new_name

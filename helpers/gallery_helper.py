@@ -40,8 +40,6 @@ class GalleryHelper():
             logger.info("Deleting ", image_to_delete)
             if os.path.exists(image_to_delete):
                 os.remove(image_to_delete)
-            else:
-                raise Exception("The image " + image_to_delete + " could not be deleted...")
 
     @staticmethod
     def save_to_json(galleries, logger):
@@ -113,12 +111,20 @@ class GalleryHelper():
         if new_name == "":
             raise Exception("Gallery name cannot be empty")
 
+        images_to_delete = request.form.getlist("image-to-delete")
+
         # In case the name has changed we need to update the folder structure
         if old_name != new_name:
+            # Rename the gallery folder
             GalleryHelper.rename_gallery_folder(base_path + old_name, base_path + new_name)
-            gallery.rename(new_name)
 
-        images_to_delete = request.form.getlist("image-to-delete")
+            # Rename the old gallery object so the paths are correctly updated
+            gallery.name = new_name
+            gallery.images = StringHelper.replace_first_occurrence(absolute_base_path + old_name, absolute_base_path + new_name, gallery.images)
+
+            # Rename the images to delete because the still have the old name
+            images_to_delete = StringHelper.replace_first_occurrence(absolute_base_path + old_name, absolute_base_path + new_name, images_to_delete)
+
 
         # The images have an absolute path -> /static/galleries/<gallery>/<image>
         # However in order to delete them successfully it should be relative -> ./static/galleries....
@@ -133,5 +139,8 @@ class GalleryHelper():
 
         # Only add those images to the object which should not have been deleted
         new_gallery.images = new_gallery.images + existing_images
+
+        # Make sure that the images are unique
+        new_gallery.images = list(set(new_gallery.images))
 
         return new_gallery
