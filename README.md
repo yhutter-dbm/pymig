@@ -17,12 +17,13 @@
 - [x] Implement editing a gallery
   - [x] Create edit page (probably can reuse create page and populate with data from a model)
   - [x] Save edited gallery back into JSON File
-- [ ] Implement deleting a gallery
-  - [ ] Create modal confirmation dialogue.
-  - [ ] Delete Gallery from JSON File
-  - [ ] Delete entire folder structure under static/galleries for the deleted gallery
+- [x] Implement deleting a gallery
+  - [x] Create modal confirmation dialogue.
+  - [x] Delete Gallery from JSON File
+  - [x] Delete entire folder structure under static/galleries for the deleted gallery
 - [ ] Implement search
 - [ ] Add error handling -> Show appropriate error page.
+  - [ ] Create error template which takes in an error message as well as an optional navigation link
   - [ ] Creating / Editing a gallery with the same name
   - [ ] Validate uploaded image file names
   - [ ] Validate image gallery name (e.g no empty string, should not exist already etc.)

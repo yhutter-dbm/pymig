@@ -73,6 +73,8 @@ def my_galleries():
 
 @app.route('/create_new_gallery/', methods=['GET', 'POST'])
 def create_new_gallery():
+    # Load from json...
+    galleries = GalleryHelper.load_from_json(app.logger)
 
     # This happens when the user has entered all relevant data for a gallery
     if request.method == "POST":
@@ -149,6 +151,40 @@ def edit_gallery(gallery_name=""):
                            current_path=current_path,
                            gallery=found_gallery,
                            requires_show_uploaded_files=True)
+
+@app.route('/delete_gallery/<gallery_name>', methods=['POST', 'GET'])
+def delete_gallery(gallery_name=""):
+    current_path = "My Galleries"
+    result = SideNavHelper.set_active_side_nav_element(current_path, side_nav_elements, app.logger)
+
+    # Load from json...
+    galleries = GalleryHelper.load_from_json(app.logger)
+    # Find the gallery with the corresponding name
+    found_gallery = GalleryHelper.get_gallery_with_name(galleries, gallery_name, app.logger)
+
+    if request.method == "POST":
+
+        try:
+            # Delete from file system
+            GalleryHelper.delete_gallery(found_gallery.name, app.logger)
+
+            # Delete from global object
+            galleries.remove(found_gallery)
+
+            # Save as json file...
+            GalleryHelper.save_to_json(galleries, app.logger)
+
+            return redirect(url_for("my_galleries"))
+
+        except Exception as error:
+            # TODO Add error HTML Template
+            return str(error)
+
+    return render_template("confirm_delete_gallery.html",
+                           side_nav_elements=result,
+                           current_path=current_path,
+                           gallery=found_gallery)
+
 
 @app.route('/search/')
 def search():

@@ -28,9 +28,7 @@ class GalleryHelper():
 
     @staticmethod
     def rename_gallery_folder(old_name, new_name):
-        print("Calling rename gallery folder with", old_name, new_name)
         if os.path.isdir(old_name):
-            print("Renaming folder", old_name, "to", new_name)
             os.rename(old_name, new_name)
 
     @staticmethod
@@ -144,3 +142,10 @@ class GalleryHelper():
         new_gallery.images = list(set(new_gallery.images))
 
         return new_gallery
+
+    @staticmethod
+    def delete_gallery(gallery_name, logger):
+        gallery_path = base_path + gallery_name
+        if os.path.exists(gallery_path):
+            # See: https://linuxize.com/post/python-delete-files-and-directories/
+            shutil.rmtree(gallery_path)
