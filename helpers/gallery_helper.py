@@ -16,6 +16,7 @@ upper_case_letters = list("abcdefghijklmnopqrstuvwxyz".upper())
 numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
 other_valid_characters = list("_- ")
 valid_gallery_name_characters = letters + upper_case_letters + numbers + other_valid_characters
+valid_image_name_characters = valid_gallery_name_characters # The same rule applies for images
 
 class GalleryHelper():
 
@@ -91,15 +92,39 @@ class GalleryHelper():
                 return False
         return True
 
+    @staticmethod
+    def is_valid_image_name(image_name):
+        image_name = image_name.strip()
+        for character in image_name:
+            if not character in valid_image_name_characters:
+                return False
+        return True
 
     @staticmethod
-    def create_gallery_from_request(request, logger):
+    def does_gallery_with_name_already_exist(gallery_name):
+        gallery_path = base_path + gallery_name
+        return os.path.exists(gallery_path)
+
+
+    @staticmethod
+    def create_gallery_from_request(request, logger, check_gallery_name = True):
         # Extract the relevant information from the request
         name = request.form.get("gallery-name", '')
+        gallery_images = request.files.getlist("gallery-images")
+
         # Check if the name is valid
         if not GalleryHelper.is_valid_gallery_name(name):
             raise Exception("Invalid gallery name " + name + ". It should only contain numeric, alphanumeric, '_' , '-' or whitespaces")
 
+        # Check if this gallery already exists
+        if check_gallery_name and GalleryHelper.does_gallery_with_name_already_exist(name):
+            raise Exception("The gallery name " + "'" + name + "'" + " does already exist")
+
+        # Check if image names are valid
+        for image in gallery_images:
+            if not GalleryHelper.is_valid_image_name(image.filename):
+                raise Exception("The image name " + "'" + image.filename + "'" + " contains invalid Characters. It should only contain numeric, alphanumeric, '_' , '-' or whitespaces")
+        
         new_gallery = Gallery(
             logger=logger,
             name=name,
@@ -111,7 +136,6 @@ class GalleryHelper():
             description = request.form.get("gallery-description", "")
         )
 
-        gallery_images = request.files.getlist("gallery-images")
 
         if len(gallery_images) > 0:
             new_gallery.set_file_paths(absolute_base_path, gallery_images)
@@ -134,8 +158,17 @@ class GalleryHelper():
 
         images_to_delete = request.form.getlist("image-to-delete")
 
+        check_gallery_name = False
+
         # In case the name has changed we need to update the folder structure
         if old_name != new_name:
+            # Only check gallery name in create from request if the name has actually changed...
+            check_gallery_name = True
+
+            # Check if this gallery already exists
+            if GalleryHelper.does_gallery_with_name_already_exist(new_name):
+                raise Exception("The gallery name " + "'" + new_name + "'" + " does already exist")
+
             # Rename the gallery folder
             GalleryHelper.rename_gallery_folder(base_path + old_name, base_path + new_name)
 
@@ -154,7 +187,7 @@ class GalleryHelper():
         GalleryHelper.remove_images_from_disk(sanitized_images_to_delete, logger)
 
         # Then create a new gallery from the request
-        new_gallery = GalleryHelper.create_gallery_from_request(request, logger)
+        new_gallery = GalleryHelper.create_gallery_from_request(request, logger, check_gallery_name)
 
         existing_images = gallery.remove_images(images_to_delete)
 

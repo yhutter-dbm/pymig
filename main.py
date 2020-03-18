@@ -137,7 +137,7 @@ def edit_gallery(gallery_name=""):
             GalleryHelper.save_to_json(galleries, app.logger)
             return redirect(url_for("my_galleries"))
         except Exception as error:
-            return redirect(url_for("error", message=str(error)))
+            return redirect(url_for("error", message=str(error), rescue_link=url_for('edit_gallery', gallery_name=gallery_name)))
 
 
 
