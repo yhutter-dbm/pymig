@@ -16,7 +16,7 @@ upper_case_letters = list("abcdefghijklmnopqrstuvwxyz".upper())
 numbers = list("0123456789")
 other_valid_characters = list("_- ")
 valid_gallery_name_characters = letters + upper_case_letters + numbers + other_valid_characters
-valid_image_name_characters = valid_gallery_name_characters # The same rule applies for images
+valid_image_name_characters = valid_gallery_name_characters + list (".")
 
 class GalleryHelper():
 
