@@ -13,7 +13,7 @@ json_file_path = "./static/galleries.json"
 # a-z / A-Z / 0-9, _, -, ' '
 letters = list("abcdefghijklmnopqrstuvwxyz")
 upper_case_letters = list("abcdefghijklmnopqrstuvwxyz".upper())
-numbers = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
+numbers = list("0123456789")
 other_valid_characters = list("_- ")
 valid_gallery_name_characters = letters + upper_case_letters + numbers + other_valid_characters
 valid_image_name_characters = valid_gallery_name_characters # The same rule applies for images
@@ -205,3 +205,15 @@ class GalleryHelper():
         if os.path.exists(gallery_path):
             # See: https://linuxize.com/post/python-delete-files-and-directories/
             shutil.rmtree(gallery_path)
+
+    @staticmethod
+    def filter_galleries(galleries, gallery_title, tags_to_include):
+        result = []
+
+        gallery_title = gallery_title.strip()
+        # Only include galleries where the gallery title matches or we have a matching tag
+        for gallery in galleries:
+            if gallery.has_gallery_title(gallery_title) or gallery.has_tags(tags_to_include):
+                result.append(gallery)
+
+        return result

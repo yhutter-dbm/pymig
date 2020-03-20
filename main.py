@@ -180,14 +180,40 @@ def delete_gallery(gallery_name=""):
                            gallery=found_gallery)
 
 
-@app.route('/search/')
+@app.route('/search/', methods=["GET", "POST"])
 def search():
     current_path = "Search"
     result = SideNavHelper.set_active_side_nav_element(
         current_path, side_nav_elements, app.logger)
+
+    # Load from json...
+    galleries = GalleryHelper.load_from_json(app.logger)
+    
+    tags = []
+    # Get all tags from the available galleries
+    for gallery in galleries:
+        tags = tags + gallery.tags
+
+    # Remove duplicated tags
+    tags = list(set(tags))
+
+    # Sort alphabetically
+    tags = sorted(tags)
+
+    if request.method == "POST":
+        # Search for the galleries with the data from the POST request
+        search_title = request.form.get("search-title", "")
+        tags_to_include = request.form.getlist("tag-to-include") or []
+
+        found_galleries = GalleryHelper.filter_galleries(galleries, search_title, tags_to_include)
+        return render_template("search_result.html",side_nav_elements=result,
+                           current_path=current_path,
+                           galleries=found_galleries)
+
     return render_template("search.html",
                            side_nav_elements=result,
-                           current_path=current_path)
+                           current_path=current_path,
+                           tags=tags)
 
 @app.route('/error')
 def error():

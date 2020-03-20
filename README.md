@@ -21,7 +21,9 @@
   - [x] Create modal confirmation dialogue.
   - [x] Delete Gallery from JSON File
   - [x] Delete entire folder structure under static/galleries for the deleted gallery
-- [ ] Implement search
+- [x] Implement search
+  - [x] Implement searching via gallery title
+  - [x] Implement searching via tags
 - [x] Add error handling -> Show appropriate error page.
   - [x] Create error template which takes in an error message as well as an optional navigation link
   - [x] Creating / Editing a gallery with the same name
@@ -29,6 +31,8 @@
   - [x] Validate image gallery name (e.g no empty string, should not exist already etc.)
 - [x] Add responsive design and make this look fancy
   - [x] Switch to UIKit Framework
+- [ ] Optional stuff
+  - [ ] Implement dedicated page for favourite galleries
 - [ ] Set debug to False
 - [ ] Remove all print statements
 - [ ] Check all TODO comments

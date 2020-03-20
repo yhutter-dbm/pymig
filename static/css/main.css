@@ -140,60 +140,70 @@ img.round-image {
 
   }
 
-	.unknown-gallery-name {
-		text-align: center;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: -1;
-	}
+.unknown-gallery-name {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
 
-	.unknown-gallery-name .em-ghost {
-		font-size: 2em;
-	}
+.unknown-gallery-name .em-ghost {
+	font-size: 2em;
+}
 
-	.no-images {
-		text-align: center;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: -1;
-	}
+.no-images {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
 
-	.no-images .em-ghost {
-		font-size: 2em;
-	}
+.no-images .em-ghost {
+	font-size: 2em;
+}
 
-	.delete-gallery-form .em-worried {
-		font-size: 3em;
-	}
+.delete-gallery-form .em-worried {
+	font-size: 3em;
+}
 
-	.error-container {
-		text-align: center;
-		display: flex;
-		flex-direction: column;
-		justify-content: center;
-		align-items: center;
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		top: 0;
-		left: 0;
-		z-index: -1;
-	}
-	.error-container .em-exploding_head {
-		margin: 15px 0;
-		font-size: 3em;
-	}
+.error-container {
+	text-align: center;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%;
+	height: 100%;
+	position: absolute;
+	top: 0;
+	left: 0;
+	z-index: -1;
+}
+.error-container .em-exploding_head {
+	margin: 15px 0;
+	font-size: 3em;
+}
+
+.back-to-search-container {
+	position: static;
+	bottom: 0;
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	width: 100%
+}
