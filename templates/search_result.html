@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<h1>Search Result</h1>
+	{% if galleries | length < 1 %}
+		<div class="no-galleries">
+			<h1>Looks like no galleries were found...</h1>
+			<i class="em em-ghost" aria-role="presentation" aria-label="GHOST"></i><br>
+			<a href="{{ url_for('search') }}"><button type="button" name="button" class="uk-button uk-button-default">Back to Search</button></a>
+		</div>
+	{% else %}
+		{% include 'galleries.html' %}
+		<div class="back-to-search-container">
+			<a href="{{ url_for('search') }}"><button type="button" name="button" class="uk-button uk-button-default">Back to Search</button></a>
+		</div>
+	{% endif %}
+{% endblock %}
