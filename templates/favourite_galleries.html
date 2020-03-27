@@ -1,0 +1,12 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<h1>Favourite Galleries</h1>
+	{% if galleries | length < 1 %}
+		<div class="no-galleries">
+			<h1>Looks like you have no favourite galleries...</h1>
+			<i class="em em-ghost" aria-role="presentation" aria-label="GHOST"></i><br>
+		</div>
+	{% else %}
+		{% include 'galleries.html' %}
+	{% endif %}
+{% endblock %}

@@ -117,6 +117,11 @@ class GalleryHelper():
         gallery_path = base_path + gallery_name
         return os.path.exists(gallery_path)
 
+    @staticmethod
+    def get_is_favourite_from_str(is_favourite_str):
+        # We treat everything besides "Yes" as False
+        return is_favourite_str.lower() == "yes"
+
 
     @staticmethod
     def create_gallery_from_request(request, logger, check_gallery_name = True):
@@ -146,13 +151,17 @@ class GalleryHelper():
             # Next check also the image file name
             if not GalleryHelper.is_valid_image_name(image.filename):
                 raise Exception("The image name " + "'" + image.filename + "'" + " contains invalid Characters. It should only contain numeric, alphanumeric, '_' , '-' or whitespaces")
-            
+        
+        # We need to convert the result from the dropdown "Yes", "No" to a boolean
+        is_favourite_str = request.form.get("gallery-favourite", "No")
+        is_favourite = GalleryHelper.get_is_favourite_from_str(is_favourite_str)
+
         new_gallery = Gallery(
             logger=logger,
             name=name,
             tags=StringHelper.parse_tags_from_text(
                 request.form.get("gallery-tags", ''), logger),
-            is_favourite=request.form.get("gallery-favourite", False),
+            is_favourite=is_favourite,
             # See: https://pythonise.com/series/learning-flask/the-flask-request-object -> Multiple files section
             images=[],
             description = request.form.get("gallery-description", "")

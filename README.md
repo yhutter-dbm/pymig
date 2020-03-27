@@ -32,7 +32,8 @@
 - [x] Add responsive design and make this look fancy
   - [x] Switch to UIKit Framework
 - [ ] Optional stuff
-  - [ ] Implement dedicated page for favourite galleries
+  - [x] Implement dedicated page for favourite galleries
+  - [ ] Currently emoji css laods the emojis over the internet, investigate offline solution.
 - [ ] Set debug to False
 - [ ] Remove all print statements
 - [ ] Check all TODO comments

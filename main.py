@@ -42,6 +42,12 @@ side_nav_elements = [
         link='search',
         active=False,
         icon="search"
+    ),
+    SideNav(
+        title='Favourites',
+        link='favourites',
+        active=False,
+        icon="heart"
     )
 ]
 
@@ -214,6 +220,28 @@ def search():
                            side_nav_elements=result,
                            current_path=current_path,
                            tags=tags)
+
+@app.route('/favourites/')
+def favourites():
+    current_path = "Favourites"
+    result = SideNavHelper.set_active_side_nav_element(
+        current_path, side_nav_elements, app.logger)
+
+    # Load from json...
+    all_galleries = GalleryHelper.load_from_json(app.logger)
+
+    # Filter out non favourite galleries
+    galleries = []
+
+    for gallery in all_galleries:
+        print(gallery.is_favourite)
+        if gallery.is_favourite == True:
+            galleries.append(gallery)
+
+    return render_template("favourite_galleries.html",
+                           side_nav_elements=result,
+                           current_path=current_path,
+                           galleries=galleries)
 
 @app.route('/error')
 def error():
