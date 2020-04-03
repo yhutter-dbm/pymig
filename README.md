@@ -1,5 +1,5 @@
 # Pymig
-
+![Pymig Logo](./logo.png)
 ## TODO
 - [x] Create project proposal
 - [x] Create Mockups

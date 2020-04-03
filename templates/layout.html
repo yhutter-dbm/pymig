@@ -1,48 +1,39 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-	<title>Pymig - Image Galleries made simple</title>
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uikit/css/uikit.min.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='emoji-css/css/emoji.css')}}">
-	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
-	<script src="{{ url_for('static', filename='masonry/js/masonry.pkgd.min.js')}}"></script>
-	<script src="{{ url_for('static', filename='masonry/js/imagesloaded.pkgd.min.js')}}"></script>
-</head>
-
-<body>
-	<nav class="uk-navbar-container" uk-navbar>
-		<img class="round-image uk-logo" src="https://via.placeholder.com/75">
-
-		<div class="uk-navbar-right">
-			<ul class="uk-navbar-nav">
-				{% for side_nav_element in side_nav_elements %}
-					{% if side_nav_element.active == True %}
-						<li class="uk-active navbar-element"><span class="uk-margin-small-left" uk-icon="icon: {{ side_nav_element.icon }}"></span><a href="{{ url_for(side_nav_element.link) }}">{{ side_nav_element.title }}</a></li>
+	<head>
+		<title>Pymig - Image Galleries made simple</title>
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='uikit/css/uikit.min.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='emoji-css/css/emoji.css')}}">
+		<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/main.css')}}">
+		<script src="{{ url_for('static', filename='masonry/js/masonry.pkgd.min.js')}}"></script>
+		<script src="{{ url_for('static', filename='masonry/js/imagesloaded.pkgd.min.js')}}"></script>
+	</head>
+	<body>
+		<nav class="uk-navbar-container" uk-navbar>
+			<div class="uk-navbar-item uk-logo">Pymig</div>
+			<div class="uk-navbar-right">
+				<ul class="uk-navbar-nav">
+					{% for side_nav_element in side_nav_elements %}
+						{% if side_nav_element.active == True %}
+							<li class="uk-active navbar-element"><span class="uk-margin-small-left" uk-icon="icon: {{ side_nav_element.icon }}"></span><a href="{{ url_for(side_nav_element.link) }}">{{ side_nav_element.title }}</a></li>
 						{% else %}
 							<li class="navbar-element"><span class="uk-margin-small-left" uk-icon="icon: {{ side_nav_element.icon }}"></span><a href="{{ url_for(side_nav_element.link) }}">{{ side_nav_element.title }}</a></li>
-					{% endif %}
-				{% endfor %}
-			</ul>
+						{% endif %}
+					{% endfor %}
+				</ul>
+			</div>
+		</nav>
+		<div class="uk-container uk-container-large">
+			{% block content %} {% endblock %}
 		</div>
-	</nav>
-
-	<div class="uk-container uk-container-large">
-		{% block content %} {% endblock %}
-	</div>
-
-
-	<script type="text/javascript" src="{{ url_for('static', filename='uikit/js/uikit.min.js')}}"></script>
-	<script type="text/javascript" src="{{ url_for('static', filename='uikit/js/uikit-icons.min.js')}}"></script>
-
-	<!-- Only load scripts for masonry when needed -->
-	{% if requires_init_masonry %}
-		<script type="text/javascript" src="{{ url_for('static', filename='js/init-masonry.js')}}"></script>
-	{% endif %}
-
-	{% if requires_show_uploaded_files %}
-		<script type="text/javascript" src="{{ url_for('static', filename='js/show-uploaded-files.js')}}"></script>
-	{% endif %}
-</body>
-
+		<script type="text/javascript" src="{{ url_for('static', filename='uikit/js/uikit.min.js')}}"></script>
+		<script type="text/javascript" src="{{ url_for('static', filename='uikit/js/uikit-icons.min.js')}}"></script>
+		<!-- Only load scripts for masonry when needed -->
+		{% if requires_init_masonry %}
+			<script type="text/javascript" src="{{ url_for('static', filename='js/init-masonry.js')}}"></script>
+		{% endif %}
+		{% if requires_show_uploaded_files %}
+			<script type="text/javascript" src="{{ url_for('static', filename='js/show-uploaded-files.js')}}"></script>
+		{% endif %}
+	</body>
 </html>
