@@ -14,7 +14,6 @@ class Gallery():
         for image in images:
             if image.filename:
                 self.images.append(gallery_full_path + image.filename)
-        self.logger.info("The current image paths  are ", self.images)
 
     def to_dictionary_data_structure(self):
         result = {}

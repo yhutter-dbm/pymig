@@ -15,6 +15,4 @@ class SideNavHelper():
         for side_nav_element in side_nav_elements:
             if side_nav_element.title == current_path:
                 side_nav_element.active = True
-                logger.info("Active side nav element is %s",
-                            side_nav_element.title)
         return side_nav_elements

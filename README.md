@@ -33,10 +33,10 @@
   - [x] Switch to UIKit Framework
 - [ ] Optional stuff
   - [x] Implement dedicated page for favourite galleries
-  - [ ] Currently emoji css laods the emojis over the internet, investigate offline solution.
-- [ ] Set debug to False
-- [ ] Remove all print statements
-- [ ] Check all TODO comments
+  - [x] Currently emoji css laods the emojis over the internet, investigate offline solution.
+- [x] Set debug to False
+- [x] Remove all print statements
+- [x] Check all TODO comments
 
 ## Ausgangslage / Motivation
 

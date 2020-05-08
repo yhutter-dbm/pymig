@@ -73,7 +73,7 @@ class GalleryHelper():
                     gallery = Gallery(logger)
                     gallery.initialize_from_dictionary(dict)
                     result_galleries.append(gallery)
-                logger.info("Loaded the following data: ", result_galleries)
+                logger.info("Loaded the following data: %s", result_galleries)
                 return result_galleries
         return []
 

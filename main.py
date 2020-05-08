@@ -14,7 +14,7 @@ from helpers.gallery_helper import GalleryHelper
 app = Flask("Pymig")
 
 # Debug flag for logging etc.
-debug = True
+debug = False
 
 # Only enable logger when not in debug mode...
 app.logger.disabled = not debug
