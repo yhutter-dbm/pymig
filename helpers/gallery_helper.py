@@ -162,6 +162,10 @@ class GalleryHelper():
             description = request.form.get("gallery-description", "")
         )
 
+        # Create a folder for the gallery name
+        gallery_path = base_path + name + "/"
+        if not os.path.isdir(gallery_path):
+            os.makedirs(gallery_path)
 
         if len(gallery_images) > 0:
             new_gallery.set_file_paths(absolute_base_path, gallery_images)
