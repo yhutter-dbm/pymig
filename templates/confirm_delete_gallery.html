@@ -8,14 +8,14 @@
 			<b>The gallery folder for {{ gallery.name }} will be deleted from the file system</b><br>
 			<b>You will no longer be able to edit the gallery</b><br>
 			<b>You will no longer be able view the images inside the gallery</b><br><br>
-			<i class="em em-worried" aria-role="presentation" aria-label="WORRIED FACE"></i><br><br>
+			<i class="far fa-meh"></i><br><br>
 			<button type="submit" name="button" class="uk-button uk-button-primary">Delete</button>
 			<a href="{{ url_for('my_galleries') }}"><button type="button" name="button" class="uk-button uk-button-default">No</button></a>
 		</form>
 	{% else %}
 		<div class="unknown-gallery-name">
 			<h1>Oops this gallery does not seem to exist...</h1>
-			<i class="em em-ghost" aria-role="presentation" aria-label="GHOST"></i>
+			<i class="far fa-grin-beam-sweat"></i>
 		</div>
 	{% endif %}
 {% endblock %}

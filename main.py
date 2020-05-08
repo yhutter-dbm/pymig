@@ -9,6 +9,8 @@ from models.gallery import Gallery
 from models.side_nav import SideNav
 from helpers.side_nav_helper import SideNavHelper
 from helpers.gallery_helper import GalleryHelper
+
+# Setup application
 app = Flask("Pymig")
 
 # Debug flag for logging etc.
@@ -50,13 +52,6 @@ side_nav_elements = [
         icon="heart"
     )
 ]
-
-current_path = "My Galleries"
-
-
-# Variables for file handling
-
-
 
 @app.route('/')
 @app.route('/my_galleries/')

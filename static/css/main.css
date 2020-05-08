@@ -23,6 +23,10 @@ img.round-image {
 	z-index: -9999;
 }
 
+.no-galleries .fa-grin-beam-sweat {
+	font-size: 5em;
+}
+
 /* Inspired from: https://stackoverflow.com/questions/34762009/pulsing-heart-css-animation */
 @keyframes heartbeat {
 	0%
@@ -154,8 +158,8 @@ img.round-image {
 	z-index: -1;
 }
 
-.unknown-gallery-name .em-ghost {
-	font-size: 2em;
+.unknown-gallery-name .fa-grin-beam-sweat {
+	font-size: 5em;
 }
 
 .no-images {
@@ -172,12 +176,12 @@ img.round-image {
 	z-index: -1;
 }
 
-.no-images .em-ghost {
-	font-size: 2em;
+.no-images .fa-grin-beam-sweat {
+	font-size: 5em;
 }
 
-.delete-gallery-form .em-worried {
-	font-size: 3em;
+.delete-gallery-form .fa-meh {
+	font-size: 5em;
 }
 
 .error-container {
@@ -193,9 +197,8 @@ img.round-image {
 	left: 0;
 	z-index: -1;
 }
-.error-container .em-exploding_head {
-	margin: 15px 0;
-	font-size: 3em;
+.error-container .fa-dizzy {
+	font-size: 5em;
 }
 
 .back-to-search-container {
