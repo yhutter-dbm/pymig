@@ -1,0 +1,13 @@
+{% extends 'layout.html' %}
+{% block content %}
+	<div class="statistics-container uk-text-center">
+		<h1>Statistic for Tags</h1>
+		{% if tags_chart %}
+			{{tags_chart | safe}}
+		{% else %}
+			<h2>Looks like you have not defined any tags yet...</h2>
+			<i class="far fa-dizzy"></i>
+		{% endif %}
+	</div>
+	
+{% endblock %}

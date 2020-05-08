@@ -9,6 +9,7 @@ from models.gallery import Gallery
 from models.side_nav import SideNav
 from helpers.side_nav_helper import SideNavHelper
 from helpers.gallery_helper import GalleryHelper
+from helpers.chart_helper import ChartHelper
 
 # Setup application
 app = Flask("Pymig")
@@ -50,6 +51,12 @@ side_nav_elements = [
         link='favourites',
         active=False,
         icon="heart"
+    ),
+    SideNav(
+        title='Statistics',
+        link='statistics',
+        active=False,
+        icon="database"
     )
 ]
 
@@ -190,16 +197,8 @@ def search():
     # Load from json...
     galleries = GalleryHelper.load_from_json(app.logger)
     
-    tags = []
-    # Get all tags from the available galleries
-    for gallery in galleries:
-        tags = tags + gallery.tags
-
-    # Remove duplicated tags
-    tags = list(set(tags))
-
-    # Sort alphabetically
-    tags = sorted(tags)
+    # Get all unique tags from all the galleries in a sorted order
+    tags = GalleryHelper.get_unique_tags(galleries, app.logger)
 
     if request.method == "POST":
         # Search for the galleries with the data from the POST request
@@ -237,6 +236,29 @@ def favourites():
                            side_nav_elements=result,
                            current_path=current_path,
                            galleries=galleries)
+
+@app.route('/statistics/')
+def statistics():
+    current_path = "Statistics"
+    result = SideNavHelper.set_active_side_nav_element(
+        current_path, side_nav_elements, app.logger)
+
+    # The data on the x scale will be all available tags
+    # The data on the y will be the count for how many times that tag occurs across all galleries
+
+    # Load from json...
+    galleries = GalleryHelper.load_from_json(app.logger)
+    
+    # Get all unique tags from all the galleries in a sorted order
+    tags = GalleryHelper.get_unique_tags(galleries, app.logger)
+    x = tags
+    y = GalleryHelper.get_tags_count(galleries, tags, app.logger)
+
+    # We are pessimistic and assume that we have no bar_chart_to_show
+    bar_chart = None
+    if len(tags) > 0:
+        bar_chart = ChartHelper.generate_bar_chart(x, y, "Most used Tags overall")
+    return render_template("statistics.html", side_nav_elements=result, current_path=current_path, tags_chart=bar_chart)
 
 @app.route('/error')
 def error():

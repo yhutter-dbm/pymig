@@ -239,3 +239,28 @@ class GalleryHelper():
                 result.append(gallery)
 
         return result
+
+    @staticmethod
+    def get_unique_tags(galleries, logger):
+        tags = []
+        # Get all tags from the available galleries
+        for gallery in galleries:
+            tags = tags + gallery.tags
+
+        # Remove duplicated tags
+        tags = list(set(tags))
+
+        # Sort alphabetically
+        return sorted(tags)
+
+    @staticmethod
+    def get_tags_count(galleries, tags, logger):
+        # We return a list which holds the count for each tag given (we assume they are already unique)
+        counts = []
+        for tag in tags:
+            current_tag_count = 0
+            for gallery in galleries:
+                if tag in gallery.tags:
+                    current_tag_count = current_tag_count + 1
+            counts.append(current_tag_count)
+        return counts
