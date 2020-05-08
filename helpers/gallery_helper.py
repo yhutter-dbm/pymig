@@ -27,9 +27,6 @@ class GalleryHelper():
         gallery_path = base_path + gallery.name + "/"
         if not os.path.isdir(gallery_path):
             os.makedirs(gallery_path)
-            logger.info("Gallery structure was created")
-        else:
-            logger.warning("Gallery path already exists...")
 
         # Copy over the images, see: https://flask.palletsprojects.com/en/1.1.x/patterns/fileuploads/
         for image in images:
@@ -45,7 +42,6 @@ class GalleryHelper():
     def remove_images_from_disk(images_to_delete, logger):
         # Only delete if the path actually exists
         for image_to_delete in images_to_delete:
-            logger.info("Deleting ", image_to_delete)
             if os.path.exists(image_to_delete):
                 os.remove(image_to_delete)
 
@@ -73,7 +69,6 @@ class GalleryHelper():
                     gallery = Gallery(logger)
                     gallery.initialize_from_dictionary(dict)
                     result_galleries.append(gallery)
-                logger.info("Loaded the following data: %s", result_galleries)
                 return result_galleries
         return []
 
