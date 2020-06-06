@@ -38,6 +38,22 @@
 - [x] Remove all print statements
 - [x] Check all TODO comments
 
+## Installationsanleitung
+Zuerst muss dieses Repository lokale auf dem PC vorhanden sein hierzu muss folgender Befehl ausgeführt werden:
+```
+git clone https://github.com/YahArt/pymig.git
+```
+
+Anschliessend muss sichergestellt sein, dass **Flask** installiert ist
+```
+sudo pip3 install flask
+```
+
+Um nun die Webapplikation starten zu können, muss in den Ordner navigiert werden, welcher via den **git clone** Befehl erzeugt wurde. Anschliessend kann die Webapplikation mit folgendem Befehl gestartet werden:
+```
+python3 main.py
+```
+
 ## Ausgangslage / Motivation
 
 Ich möchte eine Webapplikation entwickeln, welche es einem erlaubt, auf einfach Art und Weise Bildergallerien zu erstellen. Meine Motivation dahinter ist es eine Ordnung im "Bilderchaos" von Personen zu schaffen. Auch soll mit Hilfe von Metainformationen wie Tags und Titel die erstellten Gallerien durchsucht werden können.
