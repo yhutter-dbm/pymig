@@ -50,7 +50,7 @@ class Gallery():
         return self.images
 
     def has_gallery_title(self, gallery_title):
-        return self.name.lower().find(gallery_title) > 0
+        return self.name.lower().find(gallery_title) >= 0
 
     def has_tags(self, tags_to_include):
         for tag in self.tags:
