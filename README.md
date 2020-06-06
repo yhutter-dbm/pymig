@@ -117,7 +117,7 @@ Mit Hilfe der Suchfunktion ist es sehr einfach möglich eine gewünschte Galleri
 
 ### Seitennavigation / Szenarios
 Dieses Ablaufdiagramm soll veranschaulichen, wohin der Benutzer bei bestimmten Interaktionen mit der Webseite gelangt.
-![Szenarios](/documentation_images/scenarios.png)\
+![Szenarios](/documentation_images/scenarios.png)
 
 
 ### Eingebaute Erweiterungen
