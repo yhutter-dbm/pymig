@@ -204,7 +204,6 @@ def search():
         # Search for the galleries with the data from the POST request
         search_title = request.form.get("search-title", "")
         tags_to_include = request.form.getlist("tag-to-include") or []
-
         found_galleries = GalleryHelper.filter_galleries(galleries, search_title, tags_to_include)
         return render_template("search_result.html",side_nav_elements=result,
                            current_path=current_path,
@@ -228,7 +227,6 @@ def favourites():
     galleries = []
 
     for gallery in all_galleries:
-        print(gallery.is_favourite)
         if gallery.is_favourite == True:
             galleries.append(gallery)
 
