@@ -9,7 +9,7 @@
 	<div class="grid-item uk-inline-clip uk-transition-toggle" tabindex="{{ loop.index0 }}">
 		<img src="{{ image }}">
 		<div class="uk-transition-slide-bottom uk-position-bottom uk-overlay uk-overlay-default">
-			<h1>Image {{ loop.index0 + 1}}</h1>
+			<h1>{{ gallery.get_image_name(image)}}</h1>
 			<div uk-lightbox>
 				<a class="uk-button uk-button-default lightbox" href="{{ image }}">Open Fullscreen</a>
 			</div>
