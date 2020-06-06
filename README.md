@@ -1,5 +1,5 @@
 # Pymig
-![Pymig Logo](./logo.png)
+![Title Image](./documentation_images/title_image.png)
 ## TODO
 - [x] Create project proposal
 - [x] Create Mockups
@@ -31,7 +31,7 @@
   - [x] Validate image gallery name (e.g no empty string, should not exist already etc.)
 - [x] Add responsive design and make this look fancy
   - [x] Switch to UIKit Framework
-- [ ] Optional stuff
+- [x] Optional stuff
   - [x] Implement dedicated page for favourite galleries
   - [x] Currently emoji css laods the emojis over the internet, investigate offline solution.
 - [x] Set debug to False
@@ -74,32 +74,20 @@ Als Datenspeicherung wird eine JSON Datei verwendet, diese weisst folgende Struk
 
 ```json
 [
-  {
-    "title": "my awesome gallery 1",
-    "tags": ["awesome", "omg"],
-    "liked": true,
-    "images": [
-      {
-        "path": "c:\\awesome-image.png"
-      },
-      {
-        "path": "c:\\awesome-image.png"
-      }
-    ]
-  },
-  {
-    "title": "my awesome gallery 2",
-    "tags": ["omg"],
-    "liked": false,
-    "images": [
-      {
-        "path": "c:\\awesome-image.png"
-      },
-      {
-        "path": "c:\\awesome-image.png"
-      }
-    ]
-  }
+    {
+        "name": "FirstGallery",
+        "tags": [
+            "Tag1",
+            "Tag2"
+        ],
+        "is_favourite": true,
+        "images": [
+            "/static/galleries/FirstGallery/house.png",
+            "/static/galleries/FirstGallery/lab.png",
+            "/static/galleries/FirstGallery/indoors.png"
+        ],
+        "description": "FirstGalleryDescription"
+    }
 ]
 ```
 
@@ -128,5 +116,11 @@ Natürlich hat der Benutzer auch die Möglichkeit eine Gallerie zu editieren.
 Mit Hilfe der Suchfunktion ist es sehr einfach möglich eine gewünschte Gallerie zu finden. Es kann mit Hilfe der hinterlegten Tags gesucht werden. Die Suchresultate können zudem noch nach "Like-Status" gefiltert werden.
 
 ### Seitennavigation / Szenarios
-![Szenarios](/scenarios/scenarios.png)\
 Dieses Ablaufdiagramm soll veranschaulichen, wohin der Benutzer bei bestimmten Interaktionen mit der Webseite gelangt.
+![Szenarios](/documentation_images/scenarios.png)\
+
+
+### Eingebaute Erweiterungen
+Da ich alle die von mir vorgenommenen Punkte erreicht habe, wurde zusätzlich noch eine Statistik Seite erstellt. Auf der Statistik Seite, welche unter "Statistics" erreicht werden kann, ist eine grafische Übersicht aufgeführt, mit Hilfe welcher ersichtlich ist, welche Tags am meisten verwendet werden.
+
+Nebst einer Statistik wurde noch ein dedizierter Bereich für die Favoriten hinzugefügt. Dieser Bereich listet alle favorisierten Gallerien auf.
