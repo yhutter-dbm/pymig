@@ -55,7 +55,7 @@ class GalleryHelper():
 
         # See: https://stackabuse.com/reading-and-writing-json-to-a-file-in-python/
         with open(json_file_path, 'w', encoding="utf-8") as save_file:
-            json.dump(converted_galleries, save_file)
+            json.dump(converted_galleries, save_file, indent = 4)
 
     @staticmethod
     def load_from_json(logger):
