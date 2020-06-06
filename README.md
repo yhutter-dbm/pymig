@@ -44,12 +44,13 @@ Zuerst muss dieses Repository lokale auf dem PC vorhanden sein hierzu muss folge
 git clone https://github.com/YahArt/pymig.git
 ```
 
-Anschliessend muss sichergestellt sein, dass **Flask** installiert ist
+Anschliessend muss sichergestellt sein, dass **Flask** und **Plotly** installiert sind
 ```
 sudo pip3 install flask
+sudo pip3 install plotly
 ```
 
-Um nun die Webapplikation starten zu können, muss in den Ordner navigiert werden, welcher via den **git clone** Befehl erzeugt wurde. Anschliessend kann die Webapplikation mit folgendem Befehl gestartet werden:
+Um nun die Webapplikation starten zu können, muss in den Ordner navigiert werden, welcher via dem **git clone** Befehl erzeugt wurde. Anschliessend kann die Webapplikation mit folgendem Befehl gestartet werden:
 ```
 python3 main.py
 ```
